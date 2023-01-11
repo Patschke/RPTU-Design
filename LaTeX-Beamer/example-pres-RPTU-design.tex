@@ -6,6 +6,11 @@
 % coffee in return.
 %
 % 
+%
+% Actually Ronny Bergmann wrote a template file for the TUK. Patrick Mischke 
+% <mischke@rptu.de> rewrote it for the RPTU. I don't drink beer or coffee, 
+% but I'm sure you can buy me something nice as well if you feel like it. 
+%
 % This file is just to get started - You need the corresponding Logo
 %
 \documentclass[german,10pt,xcolor=colortbl,compress,aspectratio=169
@@ -20,8 +25,8 @@
 % Load Theme
 \usetheme[
 	navigation=true,
-	frametotal=false
-%,maincolor=rptudunkelgruen
+	frametotal=true
+    ,maincolor=rptupink
 ]{RPTU}
 %
 \setbeamertemplate{navigation symbols}{}
@@ -40,10 +45,21 @@
 	\tableofcontents
 \end{frame}
 \begin{frame}{Es geht los}
-	Hier in den Farben des FB-Mathematik
+	Hier wozu es dieses Template gibt:
+	\begin{itemize}
+		\item Präsentationen bauen
+		\item Ähm... Naja.
+		\item Genau, drei Punkte sind gut.
+	\end{itemize}
+	So benutzt du es:
+	\begin{enumerate}
+		\item Git Repository klonen
+		\item \LaTeX-Präsentation bauen
+		\item Genialen Vortrag halten
+	\end{enumerate}
 \end{frame}
 \section{Erstes Thema}
-\begin{frame}{Ein erstes Thema}{Ein Untertitel}
+\begin{frame}{Ein erstes Thema}{Mit Untertitel}
 	ABCx
 	\begin{lemma}[Ein Beispiellemma]
 		Ist das hier und es gilt. Vielleicht.
@@ -57,6 +73,7 @@
 	Seite\\
 	ist\\
 	sehr\\
+	sehr\\
 	voll.
 \end{frame}
 \subsection{B}
@@ -67,5 +84,8 @@
 \end{frame}
 \begin{frame}[plain]{}{}%Ohne Titel und Untertitel damits ganz leer und weiß ist
 	Ich bin so ein leerer Frame
+\end{frame}
+\begin{frame}{Abschluss}
+	Danke für die Aufmerksamkeit und so!
 \end{frame}
 \end{document}
