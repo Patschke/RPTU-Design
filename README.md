@@ -9,6 +9,11 @@ Dieses Repository ist auf https://github.com/Patschke/RPTU-Design verfügbar. Di
 
 Falls du mit LuaLaTeX (oder XeLaTeX) kompilierst, wird die Unischrift RedHatText verwendet - die sollte dann auch installiert sein ;-)
 
+## Briefvorlagen 
+Die Briefvorlagen sind vom offiziellen Brand-Portal der RPTU unter https://www.startklar2023.de/brand-portal-rptu
+
+Fragen hierzu bitte direkt an die Zuständigen Stellen. 
+
 ## Lizenz
 
 Die Quelltext-Dateien liegen unter folgender Lizenz

@@ -1,0 +1,111 @@
+\documentclass[10pt,a4paper]{scrlttr2}
+\usepackage[T1]{fontenc}
+%% inputenc wird nur bei LaTeX benötigt, LuaLaTeX ignoriert das Paket
+%%\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+%% Bei Bedarf auch in Englisch
+%%\usepackage[english]{babel}
+
+%% Die Option redhattext funktioniert derzeit nur mit LuaLaTeX
+%% Für Standard LaTeX die Option weglassen, der Text erscheint in PTSans
+%% Die Option lettercolor lässt das Logo und die Überschriften in
+%% Geschäftsblock etc. in der entsprechenden Farbe erscheinen.
+%% Verfügbar sind:
+%% rptublaugrau, rptugruengrau, rptudunkelblau, rptuhellblau,
+%% rptudunkelgruen, rptuhellgruen, rptuviolett, rptupink, rpturot,
+%% rptuorange, rptuschwarz, rptuweiss, rptu
+%% Die Option rptu wählt eine zufällige Farbe aus der Liste aus
+%% Falls die Option nicht angegeben wird, wird rptuhellgruen verwendet.
+
+\usepackage[redhattext,lettercolor=rptupink]{rptuletter}
+%\usepackage{rptuletter}
+
+\usepackage{eurosym}
+\usepackage{amsmath,amsfonts}
+\usepackage{lipsum}
+
+\pagestyle{headings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Hier individuelle Daten eingeben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Name                {Prof.\ Dr.\ Gabriele Schaumann}
+\Signature           {Prof.\ Dr.\ Gabriele E.\ Schaumann\\
+Präsidentin der RPTU}
+
+
+%% Dieser Text wird unter den Namen im Absender gesetzt
+%%\Function            {FB~Mathematik\\ AG~Optimierung\\ Leitung}
+\Function            {Präsidentin der RPTU}
+%% \Function            {}%
+%% Dieser Text wird oben über den Empfänger gesetzt
+%% \ReturnName {Gabriele E.~Schaumann}
+\ReturnName        {Die Präsidiale Doppelspitze}
+
+\Street              {Fortstraße~7}
+\Building            {I}
+\City                {Landau}
+\Zip                 {76829}
+
+\Phone               {}
+\SecretaryPhone      {+49(0)6341 280 32 200}
+%%\SecretaryPhone{}
+%% Wird eine der Telefonnummern auf nichts gesetzt, dann erscheint die
+%% entsprechende Zeile iim Absenderblock rechts nicht
+\Fax                 {+49(0)6341 280 32 200}
+
+\Email               {president@rptu.de}
+\URL                 {}
+
+%% Man kann zusätzlich zum Betreff auch einen Titel setzen, dieser
+%% erscheint unter dem Betreff und vor der Anrede
+% \Title                 {Die Präsidentin verkündet}
+
+\Subject             {Die RPTU in neuem Design.}
+
+% Die Einträge für den Geschäftsblock links im Rand auf der ersten Seite
+\Date                {\today}
+\YourReference       {}
+\YourMessage         {}
+\MyMessage           {}
+\MyReference         {}
+%\Agent               {Donald Duck}
+\Agent               {}
+%%% Falls hier ein nichtleerer Text steht, dann kommt
+%%% ein Bearbeiterfeld
+
+
+\begin{document}
+\begin{letter}{%
+    \textbf{Prof.\ Dr.\ Arnd Poetzsch-Heffter}\\
+    Gottlieb-Daimler-Straße\\
+    67663~Kaiserslautern
+  }
+
+  \opening{}
+
+  \lipsum[3-5]
+
+  \clearpage
+
+  \lipsum[3-8]
+
+  \closing{Mit freundlichen Grüßen}
+  
+\end{letter}
+
+%%% Local Variables:
+%%% eval: (setenv "LANG" "de_DE.UTF-8")
+%%% TeX-engine: luatex
+%%% End:
+
+
+
+
+
+
+
+
+
+
+\end{document}
