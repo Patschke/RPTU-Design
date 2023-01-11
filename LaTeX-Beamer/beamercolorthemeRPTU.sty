@@ -1,0 +1,45 @@
+%
+% The color scheme for TU KL, using colors from the corporate design
+%
+% Published under Beeware-License:
+%
+% THE BEER-WARE LICENSE (Rev. 42):
+% Ronny Bergmann <bergmann@mathematik.uni-kl.de> wrote this file. As long as
+% you retain this notice you can do whatever you want with this stuff. If we
+% meet some day, and you think this stuff is worth it, you can buy me a beer
+% or coffee in return.
+%
+% Actually Ronny Bergmann wrote a template file for the TUK. Patrick Mischke 
+% <mischke@rptu.de> rewrote it for the RPTU. I don't drink beer or coffee, 
+% but I'm sure you can buy me something nice as well if you feel like it. 
+%
+\ProvidesPackage{beamercolorthemeRPTU}[2022/01/10 v1.0 beamer theme in the corporate design of the University of Kaiserslautern-Landau]
+
+\mode<presentation>
+
+\setbeamercolor*{structure}{fg=black,bg=secondaryrptuthemecolor!20!white}
+\setbeamercolor*{palette primary}{use=structure,fg=mainrptuthemecolor,bg=white}
+\setbeamercolor*{palette secondary}{use=structure,fg=secondaryrptuthemecolor,bg=white}
+\setbeamercolor*{palette tertiary}{use=structure,fg=black,bg=white}
+\setbeamercolor*{palette quaternary}{fg=tuklblue,bg=mainrptuthemecolor!30!white}
+\setbeamercolor*{alerted text}{fg=mainrptuthemecolor}
+\setbeamercolor*{navigation symbols}{fg=secondaryrptuthemecolor}
+\setbeamercolor*{titlelike}{parent=palette primary}
+\setbeamercolor*{logo titlepage}{fg=white}
+\setbeamercolor*{subtitle}{fg=mainrptuthemecolor}
+\setbeamercolor*{author}{fg=mainrptuthemecolor}
+\setbeamercolor*{institute}{fg=mainrptuthemecolor}
+\setbeamercolor*{date}{fg=mainrptuthemecolor}
+\setbeamercolor*{framesubtitle}{fg=mainrptuthemecolor}
+\setbeamercolor*{item}{fg = mainrptuthemecolor}
+\setbeamercolor*{block title}{use=structure,fg=mainrptuthemecolor,bg=secondaryrptuthemecolor}
+\setbeamercolor*{block title alerted}{use=structure,fg=mainrptuthemecolor,bg=secondaryrptuthemecolor}
+\setbeamercolor*{block title example}{use=structure,fg=mainrptuthemecolor,bg=secondaryrptuthemecolor}
+\setbeamercolor*{block body}{parent=normal text,use=block title,bg=block title.bg!10!bg}
+\setbeamercolor*{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!10!bg}
+\setbeamercolor*{block body example}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{subsection in toc}{fg=black}
+
+\mode
+<all>

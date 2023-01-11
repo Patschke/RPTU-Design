@@ -1,0 +1,213 @@
+%
+% Main Theme File
+%
+% Declaration of Options, definition of specific commands the the design elements,
+% such as headline, footline and frametitle
+%
+% Published under Beeware-License:
+%
+% THE BEER-WARE LICENSE (Rev. 42):
+% Ronny Bergmann <bergmann@mathematik.uni-kl.de> wrote this file. As long as
+% you retain this notice you can do whatever you want with this stuff. If we
+% meet some day, and you think this stuff is worth it, you can buy me a beer
+% or coffee in return.
+%
+% Actually Ronny Bergmann wrote a template file for the TUK. Patrick Mischke 
+% <mischke@rptu.de> rewrote it for the RPTU. I don't drink beer or coffee, 
+% but I'm sure you can buy me something nice as well if you feel like it. 
+%
+\ProvidesPackage{beamerthemeRPTU}[2022/01/10 v1.0 beamer theme in the corporate design of the University of Kaiserslautern-Landau]
+\RequirePackage{ifthen,pdftexcmds,pgf}
+\RequirePackage{calc,tikz}
+\usetikzlibrary{svg.path}
+\RequirePackage{iftex}
+\makeatletter
+%
+%
+% Global Color Definitions
+%
+% Those colors are taken from the RPTU corporate design manual ("Brand Manual") version 220928.
+\definecolor{rptublaugrau}{RGB}{80,114,137}
+\definecolor{rptugruengrau}{RGB}{119,182,186}
+\definecolor{rptudunkelblau}{RGB}{4,44,88}
+\definecolor{rptuhellblau}{RGB}{106,178,231}
+\definecolor{rptudunkelgruen}{RGB}{0,107,107}
+\definecolor{rptuhellgruen}{RGB}{38,208,124}
+\definecolor{rptuviolett}{RGB}{76,53,117}
+\definecolor{rptupink}{RGB}{209,56,150}
+\definecolor{rpturot}{RGB}{227,27,76}
+\definecolor{rptuorange}{RGB}{255,162,82}
+\definecolor{rptuschwarz}{RGB}{0,0,0}
+\definecolor{rptuweiss}{RGB}{255,255,255}
+%
+\definecolor{schiefer}{named}{rptublaugrau}
+\definecolor{ozean}{named}{rptugruengrau}
+\definecolor{nacht}{named}{rptudunkelblau}
+\definecolor{tag}{named}{rptuhellblau}
+\definecolor{petrol}{named}{rptudunkelgruen}
+\definecolor{apfel}{named}{rptuhellgruen}
+\definecolor{pflaume}{named}{rptuviolett}
+\definecolor{fuchsia}{named}{rptupink}
+\definecolor{himbeere}{named}{rpturot}
+\definecolor{mango}{named}{rptuorange}
+%
+%
+% We want an option to select a color randomly
+\pgfmathsetseed{\number\time}% set a "random" seed based on time 
+\pgfmathdeclarerandomlist{farbliste}{{rptublaugrau}{rptugruengrau}{rptudunkelblau}{rptuhellblau}{rptudunkelgruen}{rptuhellgruen}{rptuviolett}{rptupink}{rpturot}{rptuorange}{rptuschwarz}{rptuweiss}}
+\pgfmathrandomitem{\randomcolor}{farbliste}
+%
+% Command to select the matching paircolor for a given color
+\newcommand{\selectpaircolor}[1]{
+	% There has to be a nicer way of doing this - but this works, so meh...
+	\ifnum\pdf@strcmp{#1}{rptublaugrau}=\z@
+	rptugruengrau
+	\fi
+	\ifnum\pdf@strcmp{#1}{rptugruengrau}=\z@
+	rptublaugrau
+	\fi
+	\ifnum\pdf@strcmp{#1}{rptudunkelblau}=\z@
+	rptuhellblau
+	\fi
+	\ifnum\pdf@strcmp{#1}{rptuhellblau}=\z@
+	rptudunkelblau
+	\fi
+	\ifnum\pdf@strcmp{#1}{rptudunkelgruen}=\z@
+	rptuhellgruen
+	\fi
+	\ifnum\pdf@strcmp{#1}{rptuhellgruen}=\z@
+	rptudunkelgruen
+	\fi
+	\ifnum\pdf@strcmp{#1}{rptuviolett}=\z@
+	rptupink
+	\fi
+	\ifnum\pdf@strcmp{#1}{rptupink}=\z@
+	rptuviolett
+	\fi
+	\ifnum\pdf@strcmp{#1}{rpturot}=\z@
+	rptuorange
+	\fi
+	\ifnum\pdf@strcmp{#1}{rptuorange}=\z@
+	rpturot
+	\fi
+	\ifnum\pdf@strcmp{#1}{rptuschwarz}=\z@
+	rptuweiss
+	\fi
+	\ifnum\pdf@strcmp{#1}{rptuweiss}=\z@
+	rptuschwarz
+	\fi
+}
+%
+%
+\mode<presentation>
+%
+%  Option: Choose a theme
+%
+%
+% ToDo: This if should be removed, it's been used for TUK, we don't need it anymore
+\newif\iffbset
+\fbsetfalse
+%
+\DeclareOptionBeamer{maincolor}[none]{
+	\in@{,#1,}{,rptublaugrau,rptugruengrau,rptudunkelblau,rptuhellblau,rptudunkelgruen,rptuhellgruen,rptuviolett,rptupink,rpturot,rptuorange,rptuschwarz,rptuweiss,}
+	\ifin@
+	\definecolor{mainrptuthemecolor}{named}{#1}
+	\definecolor{secondaryrptuthemecolor}{named}{\selectpaircolor{#1}}
+	\else
+	% we did not understand that color. pick a random one. That's surely best UX - picking default black/white is booring
+	\definecolor{mainrptuthemecolor}{named}{\randomcolor}
+	\definecolor{secondaryrptuthemecolor}{named}{\selectpaircolor{\randomcolor}}
+	\fi
+}
+\ExecuteOptionsBeamer{maincolor=none}
+%
+%
+%
+% ToDo: No idea why we need this here. Perhaps remove it?
+\newif\iftukl@DisableExternalize%
+\DeclareOptionBeamer{DisableExternalize}[false]{\csname tukl@DisableExternalize#1\endcsname}
+\ExecuteOptionsBeamer{DisableExternalize=false}
+%
+%  Option: Display Total Frame Number in Footline (only inf visible) on_/off
+%
+\newif\iftukl@displayTotalFrameNumber%
+\newif\iftukl@reduceTotalFrameNumber%
+\tukl@reduceTotalFrameNumberfalse%
+%
+\DeclareOptionBeamer{frametotal}[true]{\csname tukl@displayTotalFrameNumber#1\endcsname}
+\ExecuteOptionsBeamer{frametotal}
+% alternate
+% alternate
+\DeclareOptionBeamer{displayframetotal}{%
+	\Uzl@displayTotalFrameNumbertrue%
+	\tukl@reduceTotalFrameNumberfalse}
+\DeclareOptionBeamer{hideframetotal}{%
+	\Uzl@displayTotalFrameNumberfalse%
+	\tukl@reduceTotalFrameNumberfalse}
+\DeclareOptionBeamer{reducedframetotal}{%
+	\tukl@displayTotalFrameNumbertrue%
+	\tukl@reduceTotalFrameNumbertrue%
+}
+%
+%
+%  Option: Display Total Frame Number in Footline (only inf visible) on_/off
+%
+\newif\iftukl@displayNavigation%
+%
+\DeclareOptionBeamer{navigation}[true]{\csname tukl@displayNavigation#1\endcsname}
+\ExecuteOptionsBeamer{navigation}
+\DeclareOptionBeamer{hidenavigation}{\tukl@displayNavigationfalse}
+\DeclareOptionBeamer{displaynavigation}{\tukl@displayNavigationtrue}
+
+%
+%
+%  Option: Put Signet-U thing on title page
+%
+\newif\rptu@signetUonTitle%
+%
+\DeclareOptionBeamer{signetontitle}[false]{\csname tukl@signetUonTitle#1\endcsname}
+\ExecuteOptionsBeamer{signetontitle}
+
+\newcommand{\theSecondLogo}{}
+\ProcessOptionsBeamer
+
+\ifLuaTeX
+	%% works only with LuaLaTeX (and XeLaTeX)
+	\RequirePackage{fontspec}%
+	\setmainfont{RedHatText-Regular}[%
+	Extension = .ttf,
+	BoldFont = RedHatText-Bold,
+	ItalicFont = RedHatText-Italic,
+	BoldItalicFont = RedHatText-BoldItalic]%
+	\setsansfont{RedHatText-Regular}[%
+	Extension = .ttf,
+	BoldFont = RedHatText-Bold,
+	ItalicFont = RedHatText-Italic,
+	BoldItalicFont = RedHatText-BoldItalic]%
+	\setmonofont{RedHatMono-Regular}[%
+	Extension = .ttf,
+	BoldFont = RedHatMono-Bold,
+	ItalicFont = RedHatMono-Italic,
+	BoldItalicFont = RedHatMono-BoldItalic]%
+\else
+	% fallback for pdflatex: Don't bother using RedHatText
+	\RequirePackage{PTSansNarrow}
+	\RequirePackage{PTSans}
+	\renewcommand{\familydefault}{\sfdefault}
+\fi
+
+%
+% Load Theme depending on Option theme
+%
+\useinnertheme{RPTU}%
+\useoutertheme{RPTU}%
+\usecolortheme{RPTU}%
+%
+% Rest to some standard values
+%
+\setbeamertemplate{blocks}[rounded]
+\setbeamertemplate{items}[square]
+\setbeamertemplate{sections/subsections in toc}[square]
+\hypersetup{colorlinks,linkcolor=,urlcolor=rptuhellblau}
+\mode<all>
+\makeatletter
