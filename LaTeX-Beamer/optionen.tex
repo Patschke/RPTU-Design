@@ -5,6 +5,11 @@
 % meet some day, and you think this stuff is worth it, you can buy me a beer
 % or coffee in return.
 %
+%
+% Actually Ronny Bergmann wrote a template file for the TUK. Patrick Mischke 
+% <mischke@rptu.de> rewrote it for the RPTU. I don't drink beer or coffee, 
+% but I'm sure you can buy me something nice as well if you feel like it. 
+%
 % This file is just to get started - You need the corresponding Logo
 %
 \documentclass[german,10pt,xcolor=colortbl,compress
@@ -22,145 +27,138 @@
 \RequirePackage{xltxtra}
 \defaultfontfeatures{Mapping=tex-text} % converts LaTeX specials (``quotes'' --- dashes etc.) to unicode
 % Load Them
-\usetheme[useptsans,navigation=true,reducedframetotal,FB=Mathematik
-]{TUKL}
+\usetheme[navigation=true,reducedframetotal,maincolor=rptupink
+]{RPTU}
 % Meta alternative in XeLaTeX
 \setbeamertemplate{navigation symbols}{}
 \title{\LaTeX-Beamer Theme im Stil der TU Kaiserslautern}
 \subtitle{Verwendung und Optionen dieses Themes}
 \date[]{\today}
-\author[R. Bergmann]{Ronny Bergmann}
-\institute[]{AG Bildverarbeitung\\FB Mathematik\\TU Kaiserslautern}
+\author[P. Mischke]{Patrick Mischke\\Original von Ronny Bergmann}
+\institute[]{AG Ott\\FB Physik\\RPTU Kaiserslautern}
 %\hypersetup{colorlinks=true, linkcolor=tuklblue, urlcolor=blue!50!black}
 
 \renewcommand{\theSecondLogo}{\includegraphics[width=.15\paperwidth]{logos/Logo_FKZM_rgb.jpg}}
 
 \begin{document}
-	\maketitle
-	\begin{frame}{Inhaltsverzeichnis}
-		\tableofcontents
-	\end{frame}
-	\section{Einrichten}
-	\begin{frame}[fragile]{Benötigte Pakete}
-		folgende Pakete werden von dem Theme benötigt und per \lstinline!\RequirePackage! eingebunden:
-		\begin{itemize}
-			\item \lstinline!ifthen!
-			\item \lstinline!pdftexcmds!
-			\item \lstinline!calc!
-			\item \lstinline!TikZ!
-		\end{itemize}\vspace{\baselineskip}
-		sowie bei XeLaTeX zusätzlich
-		\begin{itemize}
-			\item \lstinline!fontspec!
-		\end{itemize}\vspace{\baselineskip}
-		Bei der Option \lstinline!ptsans=true! muss außerdem die Schriftart PT Sans\footnote{verfügbar unter \href{http://www.paratype.com/public/}{paratype.com/public/}} im System installiert sein. Alternativ kann Calibri verwendet werden.
-	\end{frame}
-	\begin{frame}{Einbinden des Themes}
-		\begin{itemize}
-			\item Benötigt: 4 Dateien
-			\begin{itemize}
-				\item \lstinline|beamercolorthemeTUKL.sty|
-				\item \lstinline|beamerinnerthemeTUKL.sty|
-				\item \lstinline!beamerouterthemeTUKL.sty!
-				\item \lstinline|beamerthemeTUKL.sty| 
-			\end{itemize}
-			\item das TU-Logo als \lstinline!TUKL_LOGO_RGB.png! in den Ordner \lstinline!logos/! legen
-			 im gleichen Verzeichnis oder im \TeX-Tree lagern
-			\item nach den Paketen mit \textbackslash\lstinline|usetheme[<Optionen>]\{TUKL\}| das Paket laden
-			\item Am einfachsten: Mit einem der Beispiele (pdflatex oder \XeLaTeX) loslegen
-		\end{itemize}
-	\end{frame}
-	\section{Optionen}
-	\subsection*{}
-	\begin{frame}{Optionen}{Fachbereichsfarben mit den RGB-Farben aus dem Coorporate Design I}
-		In diesem Design wird der Fachbereichsname oben links gesetzt, so dieser angegeben ist. Die Fachbereichsfarben (siehe nächste Folie) können zum Setzen von Highlights genutzt werden. Die Farben sind mit \lstinline!tukldeptfg! (Vordergrundfarbe) und \lstinline!tikldeptbg! (Hintergrund-/Hauptfarbe) definiert.
-		
-		Ist kein Fachbereich gesetzt, rückt das Logo auf die linke Seite und die rechte Seite bleibt frei
-	\end{frame}
-	\begin{frame}{Optionen}{Fachbereichsfarben mit den RGB-Farben aus dem Coorporate Design II}
-				\begin{tabular}{ll}
-					\toprule
-					\lstinline|FB=none| (Standardwert)& Standardfarben der TU (wie hier)\\
-					\lstinline|FB=Architektur| & \colorbox{tuklarchitektur}{\color{white}Architektur}\\
-					\lstinline|FB=Maschinenbau| & \colorbox{tuklmaschinenbau}{\color{white}Maschinenbau und Verfahrenstechnik}\\
-					\lstinline|FB=Bauignenieurwesen| & \colorbox{tuklbauingenieurwesen}{\color{white}Bauingenieurwesen}\\
-					\lstinline|FB=Mathematik| & \colorbox{tuklmathematik}{\color{black}Mathematik}\\
-					\lstinline|FB=Biologie| & \colorbox{tuklbiologie}{\color{white}Biologie}\\
-					\lstinline|FB=Physik| & \colorbox{tuklphysik}{\color{white}Physik}\\
-					\lstinline|FB=Chemie| & \colorbox{tuklchemie}{\color{white}Chemie}\\
-					\lstinline|FB=Raumplanung| & \colorbox{tuklraumplanung}{\color{white}Raum- und Umweltplanung}\\
-					\lstinline|FB=Elektrotechnik| & \colorbox{tuklelektrotechnik}{\color{white}Elektrotechnik und Informationstechnik}\\
-					\lstinline|FB=Sozialwissenschaften| & \colorbox{tuklsozialwissenschaften}{\color{white}Sozialwissenschaften}\\
-					\lstinline|FB=Informatik| & \colorbox{tuklinformatik}{\color{white}Informatik}\\
-					\lstinline|FB=Wirtschaftswissenschaften| & \colorbox{tuklwirtschaftswissenschaften}{\color{white}Wirtschaftswissenschaften}\\
-					\bottomrule
-				\end{tabular}
-	\end{frame}
-	\fbsetfalse
-	\begin{frame}{Ein Beispielframe ohne Fachbereich}
-		Dieser Frame ist die Optik, die ohne gesetzten Fachbereich entsteht.
-	\end{frame}
-	\fbsettrue
-	\begin{frame}{Schriftart}{nur XeLaTeX}
-		\begin{itemize}
-			\item \lstinline|ptsans=true| oder \lstinline|useptsans| lädt mit dem Paket \lstinline|fontspec| die Schriftart PT Sans\footnote{verfügbar unter \href{http://www.paratype.com/public/}{paratype.com/public/}}, so diese im System geladen ist
-			\item Alternativ: Zeilen im \XeLaTeX-Beispiel laden die Schriftart Calibri
-			\item Achtung: \lstinline|fontspec| ist ein \XeLaTeX-Paket
-			\item \lstinline|ptsans=false| oder \lstinline|noptsans| lädt weder das Paket \lstinline|fontspec| noch eine Schriftart und ist somit die Einstellung für \lstinline!pdflatex!.
-			\item Standardwert: \lstinline|ptsans=false|
-		\end{itemize}
-	\end{frame}
-	\begin{frame}{Gesamtfolienanzahl und Navigation}
-		\begin{itemize}
-			\item \lstinline|frametotal=true| bzw. \lstinline|displayframetotal| Zeige hinter der Foliennummer in der Fußzeile die Gesamtfolienanzahl. Beispiel: 5/\inserttotalframenumber
-			\item \lstinline|frametotal=false| bzw. \lstinline|hideframetotal| Zeige die Gesamtanzahl nicht (wie in diesem Foliensatz)
-			\item Standardwert: \lstinline|frametotal=true|
-			\item analog: \lstinline|displayframetotal| und \lstinline|hideframetotel|
-			\item zusätzlich: \lstinline|reducedframetotal| - Effekt: siehe diese Folien.
-		\end{itemize}
-		\vspace{\baselineskip}
-		\begin{itemize}
-			\item \lstinline|navigation=true| bzw. \lstinline|displaynavigation| Zeige in der Kopfzeile eine Navigation an (wie in diesm Foliensatz)
-			\item \lstinline|navigation=false| bzw. \lstinline|hidenavigation| Zeige keine Navigation an
-			\item Standardwert: \lstinline|navigation=true|
-		\end{itemize}
-	\end{frame}
-	\begin{frame}[plain]{Leere Folien}
-		Wird einmal mehr Platz benötigt, kann mit der option \lstinline|[plain]| des \lstinline|frame| eine komplett leere Folie erzeugt werden, wie diese hier.
-	\end{frame}
-	\section{Befehle}
-	\subsection*{}
-	\begin{frame}[fragile]{Titelseite}
-		Der Befehl \lstinline|\maketitle| erzeugt eine Titelfolie.
-		
-		Er kann in einem \lstinline|frame| aufgerufen werden, dann wird der Stil des Frames verwendet.
-		
-		Außerhalb eines Frames wird ein Titelframe erzeugt, der den Standardkopf hat, aber keine Fußzeile (siehe Titelfolie dieser Folien).
-	\end{frame}
-	\begin{frame}[fragile]{Ein zweites Logo auf der Titelseite}
-		Der Befehl \lstinline|\theSecondLogo| setzt ein neues Logo, indem man diesen umdefiniert.
-		
-		Dabei wird in dem Befehl die gesamte Grafik eingebunden; in diesen Folien etwa das Logo des Felix-Klein-Zentrums mittels
-		
-		\begin{lstlisting}
+\begin{frame}{Versionshinweis}
+	Dieses Manual ist noch für das TUK Design. \\
+	Informationen zum RPTU Design füge ich nach und nach ein.
+\end{frame}
+\maketitle
+\begin{frame}{Inhaltsverzeichnis}
+	\tableofcontents
+\end{frame}
+\section{Einrichten}
+\begin{frame}[fragile]{Benötigte Pakete}
+	folgende Pakete werden von dem Theme benötigt und per \lstinline!\RequirePackage! eingebunden:
+	\begin{itemize}
+		\item \lstinline!ifthen!
+		\item \lstinline!pdftexcmds!
+		\item \lstinline!calc!
+		\item \lstinline!TikZ!
+	\end{itemize}\vspace{\baselineskip}
+	sowie bei XeLaTeX zusätzlich
+	\begin{itemize}
+		\item \lstinline!fontspec!
+	\end{itemize}\vspace{\baselineskip}
+	Bei der Option \lstinline!ptsans=true! muss außerdem die Schriftart PT Sans\footnote{verfügbar unter \href{http://www.paratype.com/public/}{paratype.com/public/}} im System installiert sein. Alternativ kann Calibri verwendet werden.
+\end{frame}
+\begin{frame}{Einbinden des Themes}
+	\begin{itemize}
+		\item Benötigt: 4 Dateien
+		      \begin{itemize}
+			      \item \lstinline|beamercolorthemeTUKL.sty|
+			      \item \lstinline|beamerinnerthemeTUKL.sty|
+			      \item \lstinline!beamerouterthemeTUKL.sty!
+			      \item \lstinline|beamerthemeTUKL.sty|
+		      \end{itemize}
+		\item das TU-Logo als \lstinline!TUKL_LOGO_RGB.png! in den Ordner \lstinline!logos/! legen
+		      im gleichen Verzeichnis oder im \TeX-Tree lagern
+		\item nach den Paketen mit \textbackslash\lstinline|usetheme[<Optionen>]\{TUKL\}| das Paket laden
+		\item Am einfachsten: Mit einem der Beispiele (pdflatex oder \XeLaTeX) loslegen
+	\end{itemize}
+\end{frame}
+\section{Optionen}
+\subsection*{}
+\begin{frame}{Optionen}{Fachbereichsfarben mit den RGB-Farben aus dem Coorporate Design I}
+	In diesem Design wird der Fachbereichsname oben links gesetzt, so dieser angegeben ist. Die Fachbereichsfarben (siehe nächste Folie) können zum Setzen von Highlights genutzt werden. Die Farben sind mit \lstinline!tukldeptfg! (Vordergrundfarbe) und \lstinline!tikldeptbg! (Hintergrund-/Hauptfarbe) definiert.
+
+	Ist kein Fachbereich gesetzt, rückt das Logo auf die linke Seite und die rechte Seite bleibt frei
+\end{frame}
+\begin{frame}{Optionen}{Fachbereichsfarben mit den RGB-Farben aus dem Coorporate Design II}
+	Bla Bla. Ist ja alles veraltet. \par
+	Für die RPTU gibt es ganz doll viele Farben, alle Farbkombinationen stehen zur Verfügung über die option \lstinline|maincolor|. Konkret sind die möglichen Farben:
+	\lstinline|rptublaugrau,rptugruengrau,rptudunkelblau,rptuhellblau,|
+	\lstinline|rptudunkelgruen,rptuhellgruen,rptuviolett,rptupink,|
+	\lstinline|rpturot,rptuorange,rptuschwarz,rptuweiss| \\%ToDo: Farben farbig machen.
+	Die passende Zweitfarbe des Farb-Paares wird automatisch gesetzt.
+\end{frame}
+\fbsetfalse
+\begin{frame}{Ein Beispielframe ohne Fachbereich}
+	Dieser Frame ist die Optik, die ohne gesetzten Fachbereich entsteht.
+\end{frame}
+\fbsettrue
+\begin{frame}{Schriftart}{nur XeLaTeX}
+	\begin{itemize}
+		\item \lstinline|ptsans=true| oder \lstinline|useptsans| lädt mit dem Paket \lstinline|fontspec| die Schriftart PT Sans\footnote{verfügbar unter \href{http://www.paratype.com/public/}{paratype.com/public/}}, so diese im System geladen ist
+		\item Alternativ: Zeilen im \XeLaTeX-Beispiel laden die Schriftart Calibri
+		\item Achtung: \lstinline|fontspec| ist ein \XeLaTeX-Paket
+		\item \lstinline|ptsans=false| oder \lstinline|noptsans| lädt weder das Paket \lstinline|fontspec| noch eine Schriftart und ist somit die Einstellung für \lstinline!pdflatex!.
+		\item Standardwert: \lstinline|ptsans=false|
+	\end{itemize}
+\end{frame}
+\begin{frame}{Gesamtfolienanzahl und Navigation}
+	\begin{itemize}
+		\item \lstinline|frametotal=true| bzw. \lstinline|displayframetotal| Zeige hinter der Foliennummer in der Fußzeile die Gesamtfolienanzahl. Beispiel: 5/\inserttotalframenumber
+		\item \lstinline|frametotal=false| bzw. \lstinline|hideframetotal| Zeige die Gesamtanzahl nicht (wie in diesem Foliensatz)
+		\item Standardwert: \lstinline|frametotal=true|
+		\item analog: \lstinline|displayframetotal| und \lstinline|hideframetotel|
+		\item zusätzlich: \lstinline|reducedframetotal| - Effekt: siehe diese Folien.
+	\end{itemize}
+	\vspace{\baselineskip}
+	\begin{itemize}
+		\item \lstinline|navigation=true| bzw. \lstinline|displaynavigation| Zeige in der Kopfzeile eine Navigation an (wie in diesm Foliensatz)
+		\item \lstinline|navigation=false| bzw. \lstinline|hidenavigation| Zeige keine Navigation an
+		\item Standardwert: \lstinline|navigation=true|
+	\end{itemize}
+\end{frame}
+\begin{frame}[plain]{Leere Folien}
+	Wird einmal mehr Platz benötigt, kann mit der option \lstinline|[plain]| des \lstinline|frame| eine komplett leere Folie erzeugt werden, wie diese hier.
+\end{frame}
+\section{Befehle}
+\subsection*{}
+\begin{frame}[fragile]{Titelseite}
+	Der Befehl \lstinline|\maketitle| erzeugt eine Titelfolie.
+
+	Er kann in einem \lstinline|frame| aufgerufen werden, dann wird der Stil des Frames verwendet.
+
+	Außerhalb eines Frames wird ein Titelframe erzeugt, der den Standardkopf hat, aber keine Fußzeile (siehe Titelfolie dieser Folien).
+\end{frame}
+\begin{frame}[fragile]{Ein zweites Logo auf der Titelseite}
+	Der Befehl \lstinline|\theSecondLogo| setzt ein neues Logo, indem man diesen umdefiniert.
+
+	Dabei wird in dem Befehl die gesamte Grafik eingebunden; in diesen Folien etwa das Logo des Felix-Klein-Zentrums mittels
+
+	\begin{lstlisting}
 \renewcommand{\theSecondLogo}%
 	{\includegraphics[width=.15\paperwidth]{logos/Logo_FKZM.jpg}}
-		\end{lstlisting}		
-	\end{frame}
-	\begin{frame}[fragile]{Der Fachbereichsschriftzug}
-		Der Befehl \lstinline|\theDept| wird mit der Fachbereichs-Option \lstinline|FB=| auf den Namen des Fachbereichs gesetzt.
-		\\[\baselineskip]
-		Mit \lstinline|\renewcommand{\theDept}{}| kann der Text auf leer zurückgesetzt werden.
-		mit dem Aufruf \lstinline!\theDept! wird der Name ausgegeben.
-	\end{frame}
-	\begin{frame}{Links}
-		\begin{itemize}
-			\item Downloadbereich der Marketing-Abteilung\\ \href{http://www.uni-kl.de/universitaet/pr-marketing/corporate-design-und-vorlagen/}{http://www.uni-kl.de/universitaet/pr-marketing/corporate-design-und-vorlagen/}
-			\item Die Schriftart PT Sans\\
-				\href{http://www.paratype.com/public/}{http://www.paratype.com/public/}
-			\item Userguide zu \LaTeX-Beamer\\ \href{ftp://ftp.dante.de/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf}{dante.de/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf}
-			\item Aktuellste Version dieses Paketes/Themes auf \href{http://github.com}{github.com}:\\
-			\href{https://github.com/kellertuer/TUKL-Design/archive/master.zip}{https://github.com/kellertuer/TUKL-Design/archive/master.zip}
-		\end{itemize}
-	\end{frame}
+		\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]{Der Fachbereichsschriftzug}
+	Der Befehl \lstinline|\theDept| wird mit der Fachbereichs-Option \lstinline|FB=| auf den Namen des Fachbereichs gesetzt.
+	\\[\baselineskip]
+	Mit \lstinline|\renewcommand{\theDept}{}| kann der Text auf leer zurückgesetzt werden.
+	mit dem Aufruf \lstinline!\theDept! wird der Name ausgegeben.
+\end{frame}
+\begin{frame}{Links}
+	\begin{itemize}
+		\item Downloadbereich der Marketing-Abteilung\\ \href{http://www.uni-kl.de/universitaet/pr-marketing/corporate-design-und-vorlagen/}{http://www.uni-kl.de/universitaet/pr-marketing/corporate-design-und-vorlagen/}
+		\item Die Schriftart PT Sans\\
+		      \href{http://www.paratype.com/public/}{http://www.paratype.com/public/}
+		\item Userguide zu \LaTeX-Beamer\\ \href{ftp://ftp.dante.de/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf}{dante.de/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf}
+		\item Aktuellste Version dieses Paketes/Themes auf \href{http://github.com}{github.com}:\\
+		      \href{https://github.com/kellertuer/TUKL-Design/archive/master.zip}{https://github.com/kellertuer/TUKL-Design/archive/master.zip}
+	\end{itemize}
+\end{frame}
 \end{document}
