@@ -158,7 +158,17 @@
 \ExecuteOptionsBeamer{navigation}
 \DeclareOptionBeamer{hidenavigation}{\tukl@displayNavigationfalse}
 \DeclareOptionBeamer{displaynavigation}{\tukl@displayNavigationtrue}
-
+%
+%
+%
+%  Option: Make box bodies have the same color as the box header
+%
+\newif\ifrptu@twocolorboxes%
+%
+\DeclareOptionBeamer{twoColorBoxes}[true]{\csname rptu@twocolorboxes#1\endcsname}
+\ExecuteOptionsBeamer{twoColorBoxes}
+\DeclareOptionBeamer{oneColorBoxes}{\rptu@twocolorboxesfalse}
+%
 %
 %
 %  Option: Put Signet-U thing on title page

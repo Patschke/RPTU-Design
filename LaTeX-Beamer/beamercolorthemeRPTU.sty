@@ -23,7 +23,6 @@
 \setbeamercolor*{palette tertiary}{use=structure,fg=black,bg=white}
 \setbeamercolor*{palette quaternary}{fg=tuklblue,bg=mainrptuthemecolor!30!white}
 \setbeamercolor*{alerted text}{fg=mainrptuthemecolor}
-\setbeamercolor*{box text}{fg=white}
 \setbeamercolor*{navigation symbols}{fg=secondaryrptuthemecolor}
 \setbeamercolor*{titlelike}{parent=palette primary}
 \setbeamercolor*{logo titlepage}{fg=white}
@@ -33,12 +32,20 @@
 \setbeamercolor*{date}{fg=mainrptuthemecolor}
 \setbeamercolor*{framesubtitle}{fg=mainrptuthemecolor}
 \setbeamercolor*{item}{fg = mainrptuthemecolor}
-\setbeamercolor*{block title}{use=structure,fg=mainrptuthemecolor,bg=secondaryrptuthemecolor}
-\setbeamercolor*{block title alerted}{use=structure,fg=mainrptuthemecolor,bg=secondaryrptuthemecolor}
-\setbeamercolor*{block title example}{use=structure,fg=mainrptuthemecolor,bg=secondaryrptuthemecolor}
+\ifrptu@twocolorboxes
+\setbeamercolor*{box text}{fg=black}
+\setbeamercolor*{block body}{parent=box text, use=block title,bg=block title.bg!10!bg}
+\setbeamercolor*{block body alerted}{parent=box text,use=block title alerted,bg=block title alerted.bg!10!bg}
+\setbeamercolor*{block body example}{parent=box text,use=block title example,bg=block title example.bg!10!bg}
+\else
+\setbeamercolor*{box text}{fg=white}
 \setbeamercolor*{block body}{parent=box text, use=block title,bg=block title.bg}
 \setbeamercolor*{block body alerted}{parent=box text,use=block title alerted,bg=block title alerted.bg}
 \setbeamercolor*{block body example}{parent=box text,use=block title example,bg=block title example.bg}
+\fi
+\setbeamercolor*{block title}{use=structure,fg=mainrptuthemecolor,bg=secondaryrptuthemecolor}
+\setbeamercolor*{block title alerted}{use=structure,fg=mainrptuthemecolor,bg=secondaryrptuthemecolor}
+\setbeamercolor*{block title example}{use=structure,fg=mainrptuthemecolor,bg=secondaryrptuthemecolor}
 \setbeamercolor{section in toc}{fg=black}
 \setbeamercolor{subsection in toc}{fg=black}
 
