@@ -15,7 +15,6 @@
 \documentclass[german,10pt,xcolor=colortbl,compress
 %,draft
 ]{beamer}
-\usepackage{xunicode}
 \usepackage[OT1]{fontenc}
 \usepackage{calc}
 \usepackage[ngerman]{babel} % Neue Rechtschreibung
@@ -27,14 +26,14 @@
 \RequirePackage{xltxtra}
 \defaultfontfeatures{Mapping=tex-text} % converts LaTeX specials (``quotes'' --- dashes etc.) to unicode
 % Load Them
-\usetheme[navigation=true,reducedframetotal,maincolor=rptupink
+\usetheme[displaynavigation,reducedframetotal,maincolor=rptupink
 ]{RPTU}
 % Meta alternative in XeLaTeX
 \setbeamertemplate{navigation symbols}{}
-\title{\LaTeX-Beamer Theme im Stil der TU Kaiserslautern}
+\title{\LaTeX-Beamer Theme im Stil der \mbox{RPTU Kaiserslautern-Landau}}
 \subtitle{Verwendung und Optionen dieses Themes}
 \date[]{\today}
-\author[P. Mischke]{Patrick Mischke\\Original von Ronny Bergmann}
+\author[P. Mischke]{Patrick Mischke\\Original für die TUK von Ronny Bergmann}
 \institute[]{AG Ott\\FB Physik\\RPTU Kaiserslautern}
 %\hypersetup{colorlinks=true, linkcolor=tuklblue, urlcolor=blue!50!black}
 
@@ -42,8 +41,8 @@
 
 \begin{document}
 \begin{frame}{Versionshinweis}
-	Dieses Manual ist noch für das TUK Design. \\
-	Informationen zum RPTU Design füge ich nach und nach ein.
+	Dieses Design ist noch Work-In-Progress. Es sollte aber schon brauchbar nutzbar sein, einige Nice-To-Have Feature folgen hoffentlich noch. \\
+	Wenn du anregungen und Feedback hast, melde dich gerne. Es lohnt sich womöglich, ab und an die neuste Version herunterzuladen.
 \end{frame}
 \maketitle
 \begin{frame}{Inhaltsverzeichnis}
@@ -58,73 +57,85 @@
 		\item \lstinline!calc!
 		\item \lstinline!TikZ!
 	\end{itemize}\vspace{\baselineskip}
-	sowie bei XeLaTeX zusätzlich
+	sowie bei LuaLaTeX bzw. XeLaTeX zusätzlich
 	\begin{itemize}
 		\item \lstinline!fontspec!
 	\end{itemize}\vspace{\baselineskip}
-	Bei der Option \lstinline!ptsans=true! muss außerdem die Schriftart PT Sans\footnote{verfügbar unter \href{http://www.paratype.com/public/}{paratype.com/public/}} im System installiert sein. Alternativ kann Calibri verwendet werden.
+	Wird LuaLaTeX bzw. XeLaTeX verwendet, wird die Uni Schriftart RedHatText\footnote{\url{https://github.com/RedHatOfficial/RedHatFont/releases/}} verwendet.
+	Diese muss dafür im System installiert sein.
 \end{frame}
 \begin{frame}{Einbinden des Themes}
 	\begin{itemize}
 		\item Benötigt: 4 Dateien
 		      \begin{itemize}
-			      \item \lstinline|beamercolorthemeTUKL.sty|
-			      \item \lstinline|beamerinnerthemeTUKL.sty|
-			      \item \lstinline!beamerouterthemeTUKL.sty!
-			      \item \lstinline|beamerthemeTUKL.sty|
+			      \item \lstinline|beamercolorthemeRPTU.sty|
+			      \item \lstinline|beamerinnerthemeRPTU.sty|
+			      \item \lstinline!beamerouterthemeRPTU.sty!
+			      \item \lstinline|beamerthemeRPTU.sty|
 		      \end{itemize}
-		\item das TU-Logo als \lstinline!TUKL_LOGO_RGB.png! in den Ordner \lstinline!logos/! legen
-		      im gleichen Verzeichnis oder im \TeX-Tree lagern
-		\item nach den Paketen mit \textbackslash\lstinline|usetheme[<Optionen>]\{TUKL\}| das Paket laden
-		\item Am einfachsten: Mit einem der Beispiele (pdflatex oder \XeLaTeX) loslegen
+
+		\item nach den Paketen mit \textbackslash\lstinline|usetheme[<Optionen>]\{RPTU\}| das Paket laden
+		\item Am einfachsten: Mit dem Beispiel \lstinline!example-pres-RPTU-design.tex! loslegen
 	\end{itemize}
 \end{frame}
 \section{Optionen}
 \subsection*{}
-\begin{frame}{Optionen}{Fachbereichsfarben mit den RGB-Farben aus dem Coorporate Design I}
-	In diesem Design wird der Fachbereichsname oben links gesetzt, so dieser angegeben ist. Die Fachbereichsfarben (siehe nächste Folie) können zum Setzen von Highlights genutzt werden. Die Farben sind mit \lstinline!tukldeptfg! (Vordergrundfarbe) und \lstinline!tikldeptbg! (Hintergrund-/Hauptfarbe) definiert.
-
-	Ist kein Fachbereich gesetzt, rückt das Logo auf die linke Seite und die rechte Seite bleibt frei
+\newcommand{\farbe}[1]{{\color{#1}\lstinline|#1|}}
+\begin{frame}{Optionen}{Farben}
+	Die Präsentation wird mit einem der Farbpaare aus dem Corporate Design erstellt. Über die Option \lstinline!maincolor=<farbe>! kann die Hauptfarbe gewählt werden. Wird die Option nicht verwendet, wird die Farbe zufällig ausgesucht. \par
+	Folgenden Farben sind möglich:
+	\farbe{rptublaugrau} \farbe{rptugruengrau} \farbe{rptudunkelblau} \farbe{rptuhellblau}
+	\farbe{rptudunkelgruen} \farbe{rptuhellgruen} \farbe{rptuviolett} \farbe{rptupink}
+	\farbe{rpturot} \farbe{rptuorange}. Experimentell sind auch \farbe{rptuschwarz} und \color{black}\lstinline!rptuweiss! nutzbar.\par
+	Die passende Zweitfarbe des Paares wird automatisch gesetzt. Innerhalb der Präsentation kann über obige Namen auf die Farben zugegriffen werden. Die gewählten Farben stehen per \farbe{mainrptuthemecolor} und \farbe{secondaryrptuthemecolor} zur Verfügung. \par
 \end{frame}
-\begin{frame}{Optionen}{Fachbereichsfarben mit den RGB-Farben aus dem Coorporate Design II}
-	Bla Bla. Ist ja alles veraltet. \par
-	Für die RPTU gibt es ganz doll viele Farben, alle Farbkombinationen stehen zur Verfügung über die option \lstinline|maincolor|. Konkret sind die möglichen Farben:
-	\lstinline|rptublaugrau,rptugruengrau,rptudunkelblau,rptuhellblau,|
-	\lstinline|rptudunkelgruen,rptuhellgruen,rptuviolett,rptupink,|
-	\lstinline|rpturot,rptuorange,rptuschwarz,rptuweiss| \\%ToDo: Farben farbig machen.
-	Die passende Zweitfarbe des Farb-Paares wird automatisch gesetzt.
-\end{frame}
-\fbsetfalse
-\begin{frame}{Ein Beispielframe ohne Fachbereich}
-	Dieser Frame ist die Optik, die ohne gesetzten Fachbereich entsteht.
-\end{frame}
-\fbsettrue
-\begin{frame}{Schriftart}{nur XeLaTeX}
+\begin{frame}{Schriftart}{nur XeLaTeX/LuaLaTex}
 	\begin{itemize}
-		\item \lstinline|ptsans=true| oder \lstinline|useptsans| lädt mit dem Paket \lstinline|fontspec| die Schriftart PT Sans\footnote{verfügbar unter \href{http://www.paratype.com/public/}{paratype.com/public/}}, so diese im System geladen ist
-		\item Alternativ: Zeilen im \XeLaTeX-Beispiel laden die Schriftart Calibri
-		\item Achtung: \lstinline|fontspec| ist ein \XeLaTeX-Paket
-		\item \lstinline|ptsans=false| oder \lstinline|noptsans| lädt weder das Paket \lstinline|fontspec| noch eine Schriftart und ist somit die Einstellung für \lstinline!pdflatex!.
-		\item Standardwert: \lstinline|ptsans=false|
+		\item Wird XeLaTeX oder LuaLaTex verwendet, dann wird automatisch RedHatText als Schriftart ausgewählt.
+		\item Sollte RedHatText nicht installiert sein, führt dies zu Fehlern.
+		\item Wird \lstinline!pdflatex! verwendet, so kann RedHatText nicht verwendet werden.
 	\end{itemize}
 \end{frame}
 \begin{frame}{Gesamtfolienanzahl und Navigation}
 	\begin{itemize}
-		\item \lstinline|frametotal=true| bzw. \lstinline|displayframetotal| Zeige hinter der Foliennummer in der Fußzeile die Gesamtfolienanzahl. Beispiel: 5/\inserttotalframenumber
-		\item \lstinline|frametotal=false| bzw. \lstinline|hideframetotal| Zeige die Gesamtanzahl nicht (wie in diesem Foliensatz)
+		\item \lstinline|frametotal=true|: Zeige hinter der Foliennummer in der Fußzeile die Gesamtfolienanzahl. Beispiel: \insertframenumber{}/\inserttotalframenumber
+		\item \lstinline|frametotal=false|: Zeige die Gesamtanzahl nicht. Beispiel: \insertframenumber{}
 		\item Standardwert: \lstinline|frametotal=true|
-		\item analog: \lstinline|displayframetotal| und \lstinline|hideframetotel|
-		\item zusätzlich: \lstinline|reducedframetotal| - Effekt: siehe diese Folien.
+		\item Bonusoption: \lstinline|reducedframetotal|. Zeige die gekürzte Folienzahl. Beisipel siehe diese Folien ;-)
 	\end{itemize}
 	\vspace{\baselineskip}
 	\begin{itemize}
-		\item \lstinline|navigation=true| bzw. \lstinline|displaynavigation| Zeige in der Kopfzeile eine Navigation an (wie in diesm Foliensatz)
+		\item \lstinline|navigation=true| bzw. \lstinline|displaynavigation| Zeige in der Kopfzeile eine Navigation an (wie in diesem Foliensatz)
 		\item \lstinline|navigation=false| bzw. \lstinline|hidenavigation| Zeige keine Navigation an
 		\item Standardwert: \lstinline|navigation=true|
 	\end{itemize}
 \end{frame}
 \begin{frame}[plain]{Leere Folien}
 	Wird einmal mehr Platz benötigt, kann mit der option \lstinline|[plain]| des \lstinline|frame| eine komplett leere Folie erzeugt werden, wie diese hier.
+\end{frame}
+\begin{frame}{Darstellung von Blöcken}
+	\begin{itemize}
+		\item \lstinline!twoColorBoxes=true! (default): Boxen werden zweigeteilt dargestellt.
+		      \begin{block}{Beispiel}
+			      Dies ist eine zweifarbige Box.
+		      \end{block}
+		\item \lstinline!twoColorBoxes=false! oder \lstinline!oneColorBoxes!: Boxen werden einfarbig dargestellt.
+		      \setbeamercolor*{box text}{fg=white}
+		      \setbeamercolor*{block body}{parent=box text, use=block title,bg=block title.bg}
+		      \setbeamercolor*{block body alerted}{parent=box text,use=block title alerted,bg=block title alerted.bg}
+		      \setbeamercolor*{block body example}{parent=box text,use=block title example,bg=block title example.bg}
+		      \begin{block}{Beispiel}
+			      Dies ist eine einfarbige Box.
+		      \end{block}
+	\end{itemize}
+\end{frame}
+\begin{frame}{Seitenverhältnis}
+	\begin{itemize}
+		\item Diese Vorlage sollte 16:9 und 4:3 Formate unterstützen.
+		\item Auswahl direkt in den Optionen von \lstinline!beamer! in der \lstinline!documentclass[...]!, also z.B. \lstinline!aspectratio=169!
+		\item Man kann auch beliebige andere Seitenverhältnisse setzen (also z.b. \lstinline!aspectratio=137! für 13:7 oder \lstinline!aspectratio=42! für 4:2 oder \lstinline!aspectratio=1024! für 10:24). Wie gut das Design dann funktioniert mag ich nicht vorhersagen.
+		\item Standardwert von Beamer ist 4:3
+	\end{itemize}
 \end{frame}
 \section{Befehle}
 \subsection*{}
@@ -136,6 +147,8 @@
 	Außerhalb eines Frames wird ein Titelframe erzeugt, der den Standardkopf hat, aber keine Fußzeile (siehe Titelfolie dieser Folien).
 \end{frame}
 \begin{frame}[fragile]{Ein zweites Logo auf der Titelseite}
+	Dies funktioniert leider noch nicht. Ich implementiere es aber bestimmt noch irgendwann.
+
 	Der Befehl \lstinline|\theSecondLogo| setzt ein neues Logo, indem man diesen umdefiniert.
 
 	Dabei wird in dem Befehl die gesamte Grafik eingebunden; in diesen Folien etwa das Logo des Felix-Klein-Zentrums mittels
@@ -145,20 +158,14 @@
 	{\includegraphics[width=.15\paperwidth]{logos/Logo_FKZM.jpg}}
 		\end{lstlisting}
 \end{frame}
-\begin{frame}[fragile]{Der Fachbereichsschriftzug}
-	Der Befehl \lstinline|\theDept| wird mit der Fachbereichs-Option \lstinline|FB=| auf den Namen des Fachbereichs gesetzt.
-	\\[\baselineskip]
-	Mit \lstinline|\renewcommand{\theDept}{}| kann der Text auf leer zurückgesetzt werden.
-	mit dem Aufruf \lstinline!\theDept! wird der Name ausgegeben.
-\end{frame}
 \begin{frame}{Links}
 	\begin{itemize}
-		\item Downloadbereich der Marketing-Abteilung\\ \href{http://www.uni-kl.de/universitaet/pr-marketing/corporate-design-und-vorlagen/}{http://www.uni-kl.de/universitaet/pr-marketing/corporate-design-und-vorlagen/}
-		\item Die Schriftart PT Sans\\
-		      \href{http://www.paratype.com/public/}{http://www.paratype.com/public/}
+		\item Vorlagen und Arbeitshilfen im Design der RPTU\\ \href{https://www.startklar2023.de/brand-portal-rptu/}{https://www.startklar2023.de/brand-portal-rptu/}
+		\item Die Schriftart RedHatText\\
+		      \href{https://github.com/RedHatOfficial/RedHatFont/}{https://github.com/RedHatOfficial/RedHatFont/}
 		\item Userguide zu \LaTeX-Beamer\\ \href{ftp://ftp.dante.de/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf}{dante.de/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf}
 		\item Aktuellste Version dieses Paketes/Themes auf \href{http://github.com}{github.com}:\\
-		      \href{https://github.com/kellertuer/TUKL-Design/archive/master.zip}{https://github.com/kellertuer/TUKL-Design/archive/master.zip}
+		      \href{https://github.com/Patschke/RPTU-Design/archive/master.zip}{https://github.com/Patschke/RPTU-Design/archive/master.zip}
 	\end{itemize}
 \end{frame}
 \end{document}
