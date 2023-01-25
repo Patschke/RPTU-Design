@@ -1,3 +1,4 @@
+% !TeX program = LuaLaTeX
 %
 % THE BEER-WARE LICENSE (Rev. 42):
 % Ronny Bergmann <bergmann@mathematik.uni-kl.de> wrote this file. As long as you
@@ -27,6 +28,8 @@
 	navigation=true,
 	frametotal=true
     ,maincolor=rptupink
+	%,twoColorBoxes
+	,oneColorBoxes
 ]{RPTU}
 %
 \setbeamertemplate{navigation symbols}{}
@@ -60,7 +63,6 @@
 \end{frame}
 \section{Erstes Thema}
 \begin{frame}{Ein erstes Thema}{Mit Untertitel}
-	ABCx
 	\begin{lemma}[Ein Beispiellemma]
 		Ist das hier und es gilt. Vielleicht.
 	\end{lemma}
@@ -68,13 +70,8 @@
 		Ein Beispiel, wie dieses hier
 	\end{example}
 	\alert{ACHTUNG!}
-	Etwas Hervorgehobenes. Die Farben sind bisher alle dem Handbuch zum Corporate Design entnommen.\\
-	Diese\\
-	Seite\\
-	ist\\
-	sehr\\
-	sehr\\
-	voll.
+	Etwas Hervorgehobenes. Die Farben auf den Folien sind ein Farb-Paar aus dem Corporate Design.\\
+
 \end{frame}
 \subsection{B}
 \begin{frame}{Ein Beweis}{Mit Untertitel}
@@ -87,5 +84,10 @@
 \end{frame}
 \begin{frame}{Abschluss}
 	Danke für die Aufmerksamkeit und so!
+\end{frame}
+
+\setbeamertemplate{background canvas}[coloredBackgroundWithLogo][secondaryrptuthemecolor]
+\begin{frame}[plain]
+	Dies ist ein Frame mit buntem Hintergrund und Logo. Er ist noch etwas unfertig.
 \end{frame}
 \end{document}
