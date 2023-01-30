@@ -18,16 +18,6 @@
 % Title Page
 %
 %
-\usebackgroundtemplate{%
-	\ifnum\c@framenumber=1%
-	\parbox[b][\paperheight]{\paperwidth}{%
-		\raggedleft%
-		\theSecondLogo
-		\hspace{.025\paperwidth}\vspace{.05\paperheight}%
-	}%
-	\fi
-}
-
 \setbeamerfont*{title}{series=\bfseries, size=\Large}
 
 \defbeamertemplate*{title page}{RPTU}
@@ -64,9 +54,9 @@
 % we want blocks that have a single rounded corner on the bottom right, and sharp corners elsewhere. 
 % defaults only allow 4 sharp or 4 rounded corners, so we build that ourself. It's basically a copy
 % of the default beamberboxesrounded, just with 3 corners made sharp. 
-% code mostly stolen here: https://tex.stackexchange.com/questions/102136/can-i-manipulate-the-rounded-ness-of-blocks
+% idea stolen here: https://tex.stackexchange.com/questions/102136/can-i-manipulate-the-rounded-ness-of-blocks
 
-\renewcommand\beamerboxesrounded[2][]{%
+\newcommand\beamerboxesRPTU[2][]{%
   \global\let\beamer@firstlineitemizeunskip=\relax%
   \vbox\bgroup%
   \setkeys{beamerboxes}{upper=block title,lower=block body,width=\textwidth,shadow=false}%
@@ -155,7 +145,7 @@
     %\color{.}%
   }
 
-\def\endbeamerboxesrounded{%
+\def\endbeamerboxesRPTU{%
   \end{minipage}\egroup%
   \wd\bmb@box=\bmb@width%
   \bmb@temp=\dp\bmb@box%
@@ -262,5 +252,40 @@
   \egroup% of \vbox\bgroup
 }
 
-% and finally we want to use the rounded template, for which we just rewrote the rounded corners definition. 
-\setbeamertemplate{blocks}[rounded]
+% now we need to teach beamer to accept our new box style. Mostly like original beamer code again
+% https://github.com/josephwright/beamer/blob/dc0d11b4527be1f37514f0bcee83251f85b24250/base/beamerbaseauxtemplates.sty
+\defbeamertemplate{block begin}{RPTU}[1][shadow=false]
+{%
+  \par\vskip\medskipamount%
+  \begin{beamerboxesRPTU}[upper=block title,lower=block body,#1]%
+    {\raggedright\usebeamerfont*{block title}\insertblocktitle}%
+    \raggedright%
+    \usebeamerfont{block body}%
+}
+\defbeamertemplate{block end}{RPTU}[1][]
+{\end{beamerboxesRPTU}\vskip\smallskipamount}
+
+\defbeamertemplate{block alerted begin}{RPTU}[1][shadow=false]
+{%
+  \par\vskip\medskipamount%
+  \begin{beamerboxesRPTU}[upper=block title alerted,lower=block body alerted,#1]%
+    {\raggedright\usebeamerfont*{block title alerted}\insertblocktitle}%
+    \raggedright%
+    \usebeamerfont{block body alerted}%
+}%
+\defbeamertemplate{block alerted end}{RPTU}[1][]
+{\end{beamerboxesRPTU}\vskip\smallskipamount}
+
+\defbeamertemplate{block example begin}{RPTU}[1][shadow=false]
+{%
+  \par\vskip\medskipamount%
+  \begin{beamerboxesRPTU}[upper=block title example,lower=block body example,#1]
+    {\raggedright\usebeamerfont*{block title example}\insertblocktitle}%
+    \raggedright%
+    \usebeamerfont{block body example}%
+}%
+\defbeamertemplate{block example end}{RPTU}[1][]
+{\end{beamerboxesRPTU}\vskip\smallskipamount}
+
+% and finally we want to use the RPTU template, for which we just rewrote the rounded corners definition. 
+\setbeamertemplate{blocks}[RPTU]
