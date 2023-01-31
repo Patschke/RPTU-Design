@@ -89,6 +89,15 @@
 	\farbe{rpturot} \farbe{rptuorange}. Experimentell sind auch \farbe{rptuschwarz} und \color{black}\lstinline!rptuweiss! nutzbar.\par
 	Die passende Zweitfarbe des Paares wird automatisch gesetzt. Innerhalb der Präsentation kann über obige Namen auf die Farben zugegriffen werden. Die gewählten Farben stehen per \farbe{mainrptuthemecolor} und \farbe{secondaryrptuthemecolor} zur Verfügung. \par
 \end{frame}
+\begin{frame}[coloredbackground, fragile]{Optionen}{Farben II}
+	Es ist möglich, einzelne Folien in Bunt zu gestalten. Dies geht mit der Option \lstinline![coloredbackground]!, also z.B.
+	\begin{lstlisting}
+\begin{frame}[coloredbackground]{Titel}{Untertitel}
+	Inhalt
+	...
+\end{lstlisting}
+	Wie du dir schon gedacht hast, ist diese Folie ein Beispiel dafür.
+\end{frame}
 \begin{frame}{Schriftart}{nur XeLaTeX/LuaLaTex}
 	\begin{itemize}
 		\item Wird XeLaTeX oder LuaLaTex verwendet, dann wird automatisch RedHatText als Schriftart ausgewählt.

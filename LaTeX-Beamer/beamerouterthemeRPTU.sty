@@ -25,7 +25,11 @@
 \defbeamertemplate*{footline}{RPTU}%
 {%
 	\leavevmode%
-	\begin{beamercolorbox}[wd=\paperwidth,ht=\footlineheight,dp=1\footlineheight,left]{palette tertiary}%
+	\ifrptu@coloredbackground
+	\begin{beamercolorbox}[wd=\paperwidth,ht=\footlineheight,dp=1\footlineheight,left]{palette tertiary colored}%
+	\else
+		\begin{beamercolorbox}[wd=\paperwidth,ht=\footlineheight,dp=1\footlineheight,left]{palette tertiary}%
+	\fi
 	% Seitenzahl
 		\hspace*{2em}%
 			\iftukl@reduceTotalFrameNumber%fancy&still useless reduction ;)
@@ -66,7 +70,7 @@
 	\fi%
 	% Logo
 	\hfill%
-	\raisebox{-.35\height}{\resizebox{!}{.7\footlineheight}{\begin{tikzpicture}[draw=black,fill=black,rotate=180,xscale=-1]%
+	\raisebox{-.35\height}{\resizebox{!}{.7\footlineheight}{\begin{tikzpicture}[rotate=180,xscale=-1]%
 		\fill svg {%
 			M21,218h60.8c11.5,0,20.9,3.7,28.4,11.1c7.4,7.4,11.1,16.5,11.1,27.4c0,4.7-0.7,9.1-2,13.2c-1.4,4.1-3,7.4-5.1,9.8			c-2,2.4-4.1,4.7-6.1,6.4c-2,1.7-3.7,3-5.1,3.7l-2,1l24.7,44.2H99.3L77,294H46v40.9H21L21,218L21,218z M92.2,245			c-3-3-6.8-4.4-11.1-4.4H46v30.7h35.1c4.4,0,8.1-1.4,11.1-4.4c3-3,4.4-6.4,4.4-10.8C96.6,251.8,95.3,248,92.2,245%
 		};%
@@ -102,7 +106,11 @@
 \setlength{\beamer@boxsize}{.2cm}
 \defbeamertemplate*{mini frame}{RPTU}
 {%
-\begin{beamercolorbox}{navigation symbols}%
+\ifrptu@coloredbackground%
+	\begin{beamercolorbox}{navigation symbols colored}%
+\else%
+	\begin{beamercolorbox}{navigation symbols}%
+\fi%
   \resizebox{!}{.9\beamer@boxsize}{\begin{tikzpicture}[rotate=180,xscale=-1]%
 	\fill svg {%
 		M376.5,276.6v-167h-59.8v167c0,18.8-5.7,34.4-18,47.5c-5.7,5.7-12.3,10.6-18.8,13.9c-1.4,0.7-1.8,0.8-3.3,1.6			c-9,4.9-15.6,13.9-15.6,25.4c0,15.6,12.3,27.8,27.8,27.8c2.5,0,7-0.9,10.6-2.4c15.6-5.7,30.3-14.7,42.6-27			C365,339.6,376.5,310.9,376.5,276.6%
@@ -115,7 +123,12 @@
 }%
 \defbeamertemplate*{mini frame in current subsection}{RPTU}%
 {%
-\begin{beamercolorbox}{navigation symbols}%
+%
+\ifrptu@coloredbackground%
+\begin{beamercolorbox}{navigation symbols colored}%
+\else%
+	\begin{beamercolorbox}{navigation symbols}%
+\fi%
   \resizebox{!}{.9\beamer@boxsize}{\begin{tikzpicture}[rotate=180,xscale=-1]%
 	\draw svg {%
 		M376.5,276.6v-167h-59.8v167c0,18.8-5.7,34.4-18,47.5c-5.7,5.7-12.3,10.6-18.8,13.9c-1.4,0.7-1.8,0.8-3.3,1.6			c-9,4.9-15.6,13.9-15.6,25.4c0,15.6,12.3,27.8,27.8,27.8c2.5,0,7-0.9,10.6-2.4c15.6-5.7,30.3-14.7,42.6-27			C365,339.6,376.5,310.9,376.5,276.6%
@@ -137,7 +150,11 @@
 	% (oder section in head/foot - so ganz durchblickt habe ich das noch nicht...)
 	\leavevmode
 	\raggedleft
-	\begin{beamercolorbox}[leftskip=0pt,rightskip=0pt,wd=\paperwidth, ht=\headlineheight, center]{palette secondary}
+	\ifrptu@coloredbackground%
+		\begin{beamercolorbox}[leftskip=0pt,rightskip=0pt,wd=\paperwidth, ht=\headlineheight, center]{palette secondary colored}%
+	\else%
+		\begin{beamercolorbox}[leftskip=0pt,rightskip=0pt,wd=\paperwidth, ht=\headlineheight, center]{palette secondary}%
+	\fi%
 		\iftukl@displayNavigation%
 			\ifnum\c@framenumber=1%
 			\relax
@@ -159,7 +176,30 @@
 	\vspace{3\baselineskip}
 	\strut
 	\par
-}
+}%
+%
+\newif\ifrptu@coloredbackground
+\rptu@coloredbackgroundfalse
+\define@key{beamerframe}{coloredbackground}[true]{%
+  \rptu@coloredbackgroundtrue%
+  \begingroup
+  \setbeamertemplate{background canvas}[coloredBackground][secondaryrptuthemecolor]
+  \setbeamercolor*{section in head/foot}{use=section in head/foot colored}
+  \usebeamercolor[fg]{normal text colored}
+  }% 
+% unset our option, so it does not stick around forever but is limited to 1 frame
+\pretocmd{\beamer@reseteecodes}{%
+\ifrptu@coloredbackground
+  \endgroup
+  \rptu@coloredbackgroundfalse
+  \setbeamertemplate{background canvas}[default]
+  \setbeamercolor*{section in head/foot}{use=section in head/foot default}
+  \usebeamercolor[fg]{normal text}
+\fi
+}{}{}
+%\ifrptu@test%
+	%ja
+%\fi
 %
 % Title stuff
 %
@@ -170,7 +210,11 @@
 \defbeamertemplate*{frametitle}{RPTU}
 {
 	\nointerlineskip%
-	\begin{beamercolorbox}[wd=\paperwidth,leftskip=.6cm,rightskip=.6cm, vmode]{frametitle}
+	\ifrptu@coloredbackground%
+		\begin{beamercolorbox}[wd=\paperwidth,leftskip=.6cm,rightskip=.6cm, vmode]{frametitle colored}%
+	\else%
+		\begin{beamercolorbox}[wd=\paperwidth,leftskip=.6cm,rightskip=.6cm, vmode]{frametitle}%
+	\fi%	
 		\par{\usebeamerfont*{frametitle}\insertframetitle\strut\par}%
 		\ifx\insertframesubtitle\@empty%
 			\vskip-1.5ex%
@@ -225,6 +269,15 @@
 	};
 	\end{tikzpicture}
 }
+%
+%
+\defbeamertemplate*{background canvas}{coloredBackground}[1][white]{%
+\begin{tikzpicture}
+\useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
+\fill[fill=#1] (0,0) rectangle (\the\paperwidth,\the\paperheight);
+\end{tikzpicture}
+}
+%
 %
 \renewcommand{\maketitle}[0]
 {%

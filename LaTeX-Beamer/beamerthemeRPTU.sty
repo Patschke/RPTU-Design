@@ -139,11 +139,13 @@
 % alternate
 % alternate
 \DeclareOptionBeamer{displayframetotal}{%
-	\Uzl@displayTotalFrameNumbertrue%
-	\tukl@reduceTotalFrameNumberfalse}
+	\tukl@displayTotalFrameNumbertrue%
+	\tukl@reduceTotalFrameNumberfalse
+	}
 \DeclareOptionBeamer{hideframetotal}{%
-	\Uzl@displayTotalFrameNumberfalse%
-	\tukl@reduceTotalFrameNumberfalse}
+	\tukl@displayTotalFrameNumberfalse%
+	\tukl@reduceTotalFrameNumberfalse
+	}
 \DeclareOptionBeamer{reducedframetotal}{%
 	\tukl@displayTotalFrameNumbertrue%
 	\tukl@reduceTotalFrameNumbertrue%
@@ -178,7 +180,6 @@
 \DeclareOptionBeamer{signetontitle}[false]{\csname tukl@signetUonTitle#1\endcsname}
 \ExecuteOptionsBeamer{signetontitle}
 
-\newcommand{\theSecondLogo}{}
 \ProcessOptionsBeamer
 
 \ifLuaTeX
@@ -205,7 +206,13 @@
 	\RequirePackage{PTSans}
 	\renewcommand{\familydefault}{\sfdefault}
 \fi
-
+%
+% we want to add frame options, which is easier if we patch \setkeys to be nestable:
+% from https://tex.stackexchange.com/questions/512214/beamer-frame-option-to-change-background-and-font-that-works-with-labels
+\let\my@setkeys@orig\setkeys
+\def\setkeys{\expandafter\my@setkeys@aux\expandafter{\KV@prefix}}
+\long\def\my@setkeys@aux#1#2#3{\my@setkeys@orig{#2}{#3}\def\KV@prefix{#1}}
+%
 %
 % Load Theme depending on Option theme
 %
