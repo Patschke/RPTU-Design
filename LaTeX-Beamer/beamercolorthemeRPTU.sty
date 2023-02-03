@@ -14,9 +14,8 @@
 % but I'm sure you can buy me something nice as well if you feel like it. 
 %
 \ProvidesPackage{beamercolorthemeRPTU}[2022/01/10 v1.0 beamer theme in the corporate design of the University of Kaiserslautern-Landau]
-
+%
 \mode<presentation>
-
 \setbeamercolor*{structure}{fg=black,bg=secondaryrptuthemecolor!20!white}
 \setbeamercolor*{palette primary}{use=structure,fg=mainrptuthemecolor,bg=white}
 \setbeamercolor*{palette secondary}{use=structure,fg=secondaryrptuthemecolor,bg=white}
@@ -58,6 +57,11 @@
 \setbeamercolor*{block title example}{use=structure,fg=mainrptuthemecolor,bg=secondaryrptuthemecolor}
 \setbeamercolor{section in toc}{fg=black}
 \setbeamercolor{subsection in toc}{fg=black}
-
+%
+% we also set some font styles here.
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{framesubtitle}{series=\bfseries}
+\setbeamerfont*{title}{series=\bfseries, size=\Large}
+%
 \mode
 <all>
