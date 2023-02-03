@@ -97,7 +97,7 @@
 \iftukl@displayNavigation%
 \setlength{\headlineheight}{0.037\paperheight}%
 \else%
-\setlength{\headlineheight}{0pt}%
+\setlength{\headlineheight}{0.018\paperheight}%
 \fi%
 %
 %
@@ -140,16 +140,26 @@
 \end{beamercolorbox}%
 }%
 %
-
+% Wir brauchen eine Möglichkeit, zu messen, wie groß das Logo ist, um dafür Platz zu schaffen.
+\newsavebox{\logobox}%
+\newlength{\logowidth}%
+\newlength{\logoheight}%
+% Wir können hier das Logo noch nicht einfügen, da es noch nicht per \logo{...} vom Nutzer gesetzt wurde...
+% 
 \defbeamertemplate*{headline}{RPTU} 
 { 
 	% Sieht aus, als hätten wir keine Design Headline mehr? Folien beginnen direkt mit Inhalt.
 	% ich mag die nav-bar, also packe ich sie einfach nach oben. Da ist bestimmt Platz. 
 	% Alternativ könnte man \insertverticalnavigation{} nutzen, dafür muss man dann auch
-	% \defbeamertemplate*{section in sidebar}{RPTU} bzw. {section in sidebar shaded} definieren
-	% (oder section in head/foot - so ganz durchblickt habe ich das noch nicht...)
-	\leavevmode
-	\raggedleft
+	% \defbeamertemplate*{section in sidebar}{RPTU} bzw. {section in sidebar shaded} definieren)
+	% 
+	% Logo vorbereiten und Breite messen 
+	\sbox{\logobox}{\insertlogo}%
+	\global\logowidth=\wd\logobox%
+	\global\logoheight=\ht\logobox%
+	%
+	\leavevmode%
+	\raggedleft%
 	\ifrptu@coloredbackground%
 		\begin{beamercolorbox}[leftskip=0pt,rightskip=0pt,wd=\paperwidth, ht=\headlineheight, center]{palette secondary colored}%
 	\else%
@@ -159,13 +169,27 @@
 			\ifnum\c@framenumber=1%
 			\relax
 			\else%
-				\insertnavigation{.8\paperwidth}
+				\insertnavigation{\dimexpr\paperwidth-\logowidth-2pt}
 			\fi%
+		\else
+			\hspace*{\dimexpr\paperwidth-\logowidth-2pt}
 		\fi
+		\hfill
+		\smash{\raisebox{\dimexpr\headlineheight-1\logoheight}{\usebox{\logobox}}}
 	\end{beamercolorbox}
 	\strut
 	\par
-} 
+}%
+%
+\defbeamertemplate*{sidebar right}{RPTU}%
+{%
+	% Usually the logo would be placed on the bottom of
+	% the right sidebar. We don't want this. 
+	% just in case someone actually likes those navigation symbols, (buttons for next/previous slide), we keep them.
+	\vfill%
+	\llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+	\vskip2pt%
+}%
 %
 % Plain Style for the titlepage
 %
@@ -197,12 +221,6 @@
   \usebeamercolor[fg]{normal text}
 \fi
 }{}{}
-%\ifrptu@test%
-	%ja
-%\fi
-%
-% Title stuff
-%
 
 \newlength{\dekolinelengthbelowframetitle}
 \setlength{\dekolinelengthbelowframetitle}{.7cm}
@@ -211,21 +229,21 @@
 {
 	\nointerlineskip%
 	\ifrptu@coloredbackground%
-		\begin{beamercolorbox}[wd=\paperwidth,leftskip=.6cm,rightskip=.6cm, vmode]{frametitle colored}%
+		\begin{beamercolorbox}[wd=\paperwidth, ignorebg, leftskip=.6cm, rightskip=\dimexpr.6cm+\logowidth, vmode]{frametitle colored}%
 	\else%
-		\begin{beamercolorbox}[wd=\paperwidth,leftskip=.6cm,rightskip=.6cm, vmode]{frametitle}%
-	\fi%	
+		\begin{beamercolorbox}[wd=\paperwidth, ignorebg, leftskip=.6cm, rightskip=\dimexpr.6cm+\logowidth, vmode]{frametitle}%
+	\fi%
 		\par{\usebeamerfont*{frametitle}\insertframetitle\strut\par}%
 		\ifx\insertframesubtitle\@empty%
 			\vskip-1.5ex%
-			\rule{\dekolinelengthbelowframetitle}{.7pt}
+			\rule{\dekolinelengthbelowframetitle}{.7pt}%
 			\strut\par%
-			\vspace{-.3\baselineskip}
-		\else
+			\vspace{-.3\baselineskip}%
+		\else%
 			\vskip-.25ex%
 			\par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
 			\vskip-1.5ex%
-			\par\rule{\dekolinelengthbelowframetitle}{.7pt}\strut\par
+			\par\rule{\dekolinelengthbelowframetitle}{.7pt}\strut\par%
 		\fi%
 		\vskip-.5ex%
 	\end{beamercolorbox}%

@@ -156,18 +156,12 @@
 
 	Außerhalb eines Frames wird ein Titelframe erzeugt, der den Standardkopf hat, aber keine Fußzeile (siehe Titelfolie dieser Folien).
 \end{frame}
-\begin{frame}[fragile]{Ein zweites Logo auf der Titelseite}
-	Dies funktioniert leider noch nicht. Ich implementiere es aber bestimmt noch irgendwann.
-
-	Der Befehl \lstinline|\theSecondLogo| setzt ein neues Logo, indem man diesen umdefiniert.
-
-	Dabei wird in dem Befehl die gesamte Grafik eingebunden; in diesen Folien etwa das Logo des Felix-Klein-Zentrums mittels
-
-	\begin{lstlisting}
-\renewcommand{\theSecondLogo}%
-	{\includegraphics[width=.15\paperwidth]{logos/Logo_FKZM.jpg}}
-		\end{lstlisting}
+\logo{\color{black}\Large{\parbox{3cm}{\centering Hier wäre\\das Logo}}}
+\begin{frame}{Logo}
+	Ein eigenes Logo kann per \lstinline|\\logo\{xy\}| wie gewohnt eingebunden werden und erscheint oben rechts. Es wird entsprechend Platz geschaffen.\par
+	Auch die übrigen Beamerbefehle (\lstinline|\\title|, \lstinline|\\subtitle|, \lstinline|\\date|, \lstinline|\\author| und \lstinline|\\institute|) sind natürlich nutzbar.
 \end{frame}
+\logo{}
 \begin{frame}{Links}
 	\begin{itemize}
 		\item Vorlagen und Arbeitshilfen im Design der RPTU\\ \href{https://www.startklar2023.de/brand-portal-rptu/}{https://www.startklar2023.de/brand-portal-rptu/}
