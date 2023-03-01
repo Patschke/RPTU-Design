@@ -179,32 +179,68 @@
 %
 \DeclareOptionBeamer{signetontitle}[false]{\csname tukl@signetUonTitle#1\endcsname}
 \ExecuteOptionsBeamer{signetontitle}
+%
+%  Option: Default to use Red Hat Text, but allow setting to false
+%
+\newif\ifrptu@redhat%
+%
+\DeclareOptionBeamer{redhat}[true]{\csname rptu@redhat#1\endcsname}
+\ExecuteOptionsBeamer{redhat}
 
 \ProcessOptionsBeamer
-
-\ifLuaTeX
-	%% works only with LuaLaTeX (and XeLaTeX)
-	\RequirePackage{fontspec}%
+% Set fonts depending on available TeX engine.
+% pdflatex will not use any Red Hat Text. 
+% XeLaTeX will use Red Hat for text and math
+% LuaLaTex will use Red Hat for text only
+\ifrptu@redhat
+\ifXeTeX
+	%% works only with XeLaTeX
+	\RequirePackage[T1]{fontenc}
+	\RequirePackage[no-math]{fontspec}
 	\setmainfont{RedHatText-Regular}[%
-	Extension = .ttf,
-	BoldFont = RedHatText-Bold,
-	ItalicFont = RedHatText-Italic,
-	BoldItalicFont = RedHatText-BoldItalic]%
+		Extension = .ttf,
+		BoldFont = RedHatText-Bold,
+		ItalicFont = RedHatText-Italic,
+		BoldItalicFont = RedHatText-BoldItalic]%
 	\setsansfont{RedHatText-Regular}[%
-	Extension = .ttf,
-	BoldFont = RedHatText-Bold,
-	ItalicFont = RedHatText-Italic,
-	BoldItalicFont = RedHatText-BoldItalic]%
+		Extension = .ttf,
+		BoldFont = RedHatText-Bold,
+		ItalicFont = RedHatText-Italic,
+		BoldItalicFont = RedHatText-BoldItalic]%
 	\setmonofont{RedHatMono-Regular}[%
-	Extension = .ttf,
-	BoldFont = RedHatMono-Bold,
-	ItalicFont = RedHatMono-Italic,
-	BoldItalicFont = RedHatMono-BoldItalic]%
+		Extension = .ttf,
+		BoldFont = RedHatMono-Bold,
+		ItalicFont = RedHatMono-Italic,
+		BoldItalicFont = RedHatMono-BoldItalic]%
+	\RequirePackage{mathspec}
+	\setmathsfont(Digits){Red Hat Text}        %Red Hat Text im Mathmode
+	\setmathsfont(Latin){Red Hat Text}
 \else
-	% fallback for pdflatex: Don't bother using RedHatText
-	\RequirePackage{PTSansNarrow}
-	\RequirePackage{PTSans}
-	\renewcommand{\familydefault}{\sfdefault}
+	\ifLuaTeX
+		%% works only with LuaLaTeX (and XeLaTeX)
+		\RequirePackage{fontspec}%
+		\setmainfont{RedHatText-Regular}[%
+			Extension = .ttf,
+			BoldFont = RedHatText-Bold,
+			ItalicFont = RedHatText-Italic,
+			BoldItalicFont = RedHatText-BoldItalic]%
+		\setsansfont{RedHatText-Regular}[%
+			Extension = .ttf,
+			BoldFont = RedHatText-Bold,
+			ItalicFont = RedHatText-Italic,
+			BoldItalicFont = RedHatText-BoldItalic]%
+		\setmonofont{RedHatMono-Regular}[%
+			Extension = .ttf,
+			BoldFont = RedHatMono-Bold,
+			ItalicFont = RedHatMono-Italic,
+			BoldItalicFont = RedHatMono-BoldItalic]%
+	\else
+		% fallback for pdflatex: Don't bother using RedHatText
+		\RequirePackage{PTSansNarrow}
+		\RequirePackage{PTSans}
+		\renewcommand{\familydefault}{\sfdefault}
+	\fi
+\fi
 \fi
 %
 % we want to add frame options, which is easier if we patch \setkeys to be nestable:

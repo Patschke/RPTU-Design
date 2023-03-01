@@ -15,18 +15,13 @@
 \documentclass[german,10pt,xcolor=colortbl,compress
 %,draft
 ]{beamer}
-\usepackage[OT1]{fontenc}
 \usepackage{calc}
 \usepackage[ngerman]{babel} % Neue Rechtschreibung
 \usepackage{amsmath,amsthm,amssymb,euscript} % AMS-LaTeX  
 \usepackage{enumerate,graphicx,booktabs}
 \usepackage[TeX]{listings}
-\lstset{basicstyle=\small\ttfamily}
-\RequirePackage[no-math]{fontspec} 
-\RequirePackage{xltxtra}
-\defaultfontfeatures{Mapping=tex-text} % converts LaTeX specials (``quotes'' --- dashes etc.) to unicode
-% Load Them
-\usetheme[displaynavigation,reducedframetotal,maincolor=rptupink
+\lstset{basicstyle=\small\ttfamily}% Load Them
+\usetheme[displaynavigation,reducedframetotal,maincolor=rptupink,redhat=true
 ]{RPTU}
 % Meta alternative in XeLaTeX
 \setbeamertemplate{navigation symbols}{}
@@ -59,7 +54,7 @@
 	\end{itemize}\vspace{\baselineskip}
 	sowie bei LuaLaTeX bzw. XeLaTeX zusätzlich
 	\begin{itemize}
-		\item \lstinline!fontspec!
+		\item \lstinline!fontspec, fontenc, mathspec!
 	\end{itemize}\vspace{\baselineskip}
 	Wird LuaLaTeX bzw. XeLaTeX verwendet, wird die Uni Schriftart RedHatText\footnote{\url{https://github.com/RedHatOfficial/RedHatFont/releases/}} verwendet.
 	Diese muss dafür im System installiert sein.
@@ -100,8 +95,9 @@
 \end{frame}
 \begin{frame}{Schriftart}{nur XeLaTeX/LuaLaTex}
 	\begin{itemize}
-		\item Wird XeLaTeX oder LuaLaTex verwendet, dann wird automatisch RedHatText als Schriftart ausgewählt.
-		\item Sollte RedHatText nicht installiert sein, führt dies zu Fehlern.
+		\item Wird XeLaTeX oder LuaLaTex verwendet, dann wird automatisch RedHatText als Schriftart ausgewählt. Mit der Option \lstinline!redhat=false! kann dies ausgeschaltet werden. 
+		\item Bei XeLaTeX wird RedHatText auch für mathematische Formeln verwendet: $E=mc^2$
+		\item Sollte RedHatText nicht installiert sein, führt dies zu Fehlern. Konkret werden die \lstinline!.ttf! Varianten von \lstinline!RedHatText-Regular!, \lstinline!RedHatText-Bold!, \lstinline!RedHatText-Italic!, \lstinline!RedHatText-BoldItalic!, \lstinline!RedHatMono-Regular!, \lstinline!RedHatMono-Bold!, \lstinline!RedHatMono-Italic! und \lstinline!RedHatMono-BoldItalic! benötigt. 
 		\item Wird \lstinline!pdflatex! verwendet, so kann RedHatText nicht verwendet werden.
 	\end{itemize}
 \end{frame}
