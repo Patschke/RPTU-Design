@@ -21,33 +21,64 @@
 
 \defbeamertemplate*{title page}{RPTU}
 {
-	{
-	\mbox{}\vfill
-	\raggedright
-	{
-		\usebeamercolor[fg]{title}\usebeamerfont{title}\inserttitle\par
-		\usebeamercolor[fg]{subtitle}\usebeamerfont{subtitle}\insertsubtitle
-		\vskip1ex
-		\hrule height .7pt
-	}%
-	\vskip6ex
-			{
-		    	\usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor\strut
-			\vskip6ex
-			}
-			{\usebeamerfont*{institute}
-			\small
-		    	\usebeamercolor[fg]{institute}\usebeamerfont{institute}\insertinstitute\strut
-			\vskip6ex
-			}
-			{
-	    		\usebeamercolor[fg]{date}\usebeamerfont{date}\insertdate\strut
-			}
-			\vskip4ex  
-			\vfill
-			\vskip1.8ex
-	\mbox{}
-	}
+  {
+      \mbox{}\vfill
+      \raggedright
+      {
+        \usebeamercolor[fg]{title}\usebeamerfont{title}\inserttitle\par
+        \usebeamercolor[fg]{subtitle}\usebeamerfont{subtitle}\insertsubtitle
+        \vskip1ex
+        \hrule height .7pt
+      }%
+      \vskip6ex
+      {
+        \usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor\strut
+        \vskip6ex
+      }
+      {\usebeamerfont*{institute}
+        \small
+        \usebeamercolor[fg]{institute}\usebeamerfont{institute}\insertinstitute\strut
+        \vskip6ex
+      }
+      {
+        \usebeamercolor[fg]{date}\usebeamerfont{date}\insertdate\strut
+      }
+      \vskip4ex
+      \vfill
+      \vskip1.8ex
+      \mbox{}
+    }
+}
+
+\defbeamertemplate*{title page}{RPTUsignet}
+{
+  {
+      \mbox{}\vfill
+      \parbox{.4\paperwidth}{
+        \raggedright
+        \usebeamercolor[fg]{title}\usebeamerfont{title}\inserttitle\par
+        \usebeamercolor[fg]{palette primary}
+        \vskip1ex
+        \hrule height .7pt width 1em
+        \vskip1ex
+        \usebeamercolor[fg]{subtitle}\usebeamerfont{subtitle}\insertsubtitle
+        \vskip6ex
+      }%
+      \vfill
+      {
+        \usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor\strut
+        \vskip1ex
+      }
+      {\usebeamerfont*{institute}
+        \small
+        \usebeamercolor[fg]{institute}\usebeamerfont{institute}\insertinstitute\strut
+        \vskip1ex
+      }
+      {
+        \usebeamercolor[fg]{date}\usebeamerfont{date}\insertdate\strut
+      }
+      \mbox{}
+    }
 }
 
 % we want blocks that have a single rounded corner on the bottom right, and sharp corners elsewhere. 
@@ -103,8 +134,8 @@
       \else%
         \color{upper.bg}%
       \fi%
-	% There used to be rounded corners here. We remove them. 
-	  \pgfpathqmoveto{-4bp}{3bp}%Patrick new
+      % There used to be rounded corners here. We remove them. 
+      \pgfpathqmoveto{-4bp}{3bp}%Patrick new
       \pgfpathlineto{\pgfpoint{\bmb@temp+4bp}{3bp}}% Patrick new
       \bmb@dima=-\ht\bmb@box%
       \advance\bmb@dima by-2pt%
@@ -118,17 +149,17 @@
   \vskip-1pt%
   \ifdim\wd\bmb@box=0pt%
   \else%
-  \hbox{%
-    \begin{pgfpicture}{0pt}{0pt}{\bmb@width}{6pt}
-      \bmb@dima=\bmb@width%
-      \advance\bmb@dima by8bp%
-      \pgfpathrectangle{\pgfpoint{-4bp}{-1bp}}{\pgfpoint{\bmb@dima}{8bp}}
-      \pgfusepath{clip}
-      {\pgftransformshift{\pgfpoint{-4bp}{0bp}}\pgftext[left,base]{\pgfuseshading{bmb@transition}}}%
-    \end{pgfpicture}%
-  }%
-  \nointerlineskip%
-  \vskip-0.5pt%
+    \hbox{%
+      \begin{pgfpicture}{0pt}{0pt}{\bmb@width}{6pt}
+        \bmb@dima=\bmb@width%
+        \advance\bmb@dima by8bp%
+        \pgfpathrectangle{\pgfpoint{-4bp}{-1bp}}{\pgfpoint{\bmb@dima}{8bp}}
+        \pgfusepath{clip}
+        {\pgftransformshift{\pgfpoint{-4bp}{0bp}}\pgftext[left,base]{\pgfuseshading{bmb@transition}}}%
+      \end{pgfpicture}%
+    }%
+    \nointerlineskip%
+    \vskip-0.5pt%
   \fi%
   \ifbmb@shadow%
     \setbox\bmb@boxshadow=\hbox{\pgfuseshading{bmb@shadow}}%
@@ -142,9 +173,9 @@
     \colorlet{beamerstructure}{upper.bg}%
     \colorlet{structure}{upper.bg}%
     %\color{.}%
-  }
+    }
 
-\def\endbeamerboxesRPTU{%
+    \def\endbeamerboxesRPTU{%
   \end{minipage}\egroup%
   \wd\bmb@box=\bmb@width%
   \bmb@temp=\dp\bmb@box%
@@ -160,9 +191,9 @@
       {\pgftransformshift{\pgfpoint{4bp}{-3bp}}\pgftext{\copy\bmb@boxshadowball}}
       \begin{pgfscope}
         {%
-        \advance\bmb@temp by-1bp%
-        \pgfpathrectangle{\pgfpoint{\bmb@temp}{-7bp}}{\pgfpoint{9bp}{9bp}}%
-        \pgfusepath{clip}
+          \advance\bmb@temp by-1bp%
+          \pgfpathrectangle{\pgfpoint{\bmb@temp}{-7bp}}{\pgfpoint{9bp}{9bp}}%
+          \pgfusepath{clip}
         }%
         {\pgftransformshift{\pgfpoint{\bmb@temp}{1bp}}\pgftext{\box\bmb@boxshadowballlarge}}
       \end{pgfscope}
@@ -185,13 +216,13 @@
         \pgfpathrectangle{\pgfpoint{\bmb@temp}{1bp}}{\pgfpoint{4bp}{\bmb@dima}}
         \pgfusepath{clip}
         \advance\bmb@temp by4bp%
-        {\pgftransformshift{\pgfpoint{\bmb@temp}{-3bp}}%
-          \pgftransformrotate{90}%
-          \pgftext[left,base]{\box\bmb@boxshadow}}%
+          {\pgftransformshift{\pgfpoint{\bmb@temp}{-3bp}}%
+            \pgftransformrotate{90}%
+            \pgftext[left,base]{\box\bmb@boxshadow}}%
       \end{pgfscope}
       \fi%
       \unhbox\bmb@colorbox%
-	  % There used to be a rounded corner here as well (bottom left). Also removed
+      % There used to be a rounded corner here as well (bottom left). Also removed
       \pgfpathqmoveto{-4bp}{-3bp}% Patrick new
       \pgfpathlineto{\pgfpoint{\the\bmb@temp-6}{-3bp}}% we wanted a bit larger radius, so this has been changed
       \pgfpathcurveto%
@@ -199,10 +230,10 @@
       {\pgfpoint{\the\bmb@dimb}{.8bp}}% this has been changed
       {\pgfpoint{\the\bmb@dimb}{7bp}}% this has been changed
       {
-      \bmb@dima=\ht\bmb@box%
-      \pgfpathlineto{\pgfpoint{\bmb@dimb}{\bmb@dima}}
-      \pgfpathlineto{\pgfpoint{-4bp}{\bmb@dima}}
-      \pgfusepath{fill}
+        \bmb@dima=\ht\bmb@box%
+        \pgfpathlineto{\pgfpoint{\bmb@dimb}{\bmb@dima}}
+        \pgfpathlineto{\pgfpoint{-4bp}{\bmb@dima}}
+        \pgfusepath{fill}
       }
       \ifbmb@shadow%
       {
@@ -260,9 +291,9 @@
     {\raggedright\usebeamerfont*{block title}\insertblocktitle}%
     \raggedright%
     \usebeamerfont{block body}%
-}
-\defbeamertemplate{block end}{RPTU}[1][]
-{\end{beamerboxesRPTU}\vskip\smallskipamount}
+    }
+    \defbeamertemplate{block end}{RPTU}[1][]
+    {\end{beamerboxesRPTU}\vskip\smallskipamount}
 
 \defbeamertemplate{block alerted begin}{RPTU}[1][shadow=false]
 {%
@@ -271,9 +302,9 @@
     {\raggedright\usebeamerfont*{block title alerted}\insertblocktitle}%
     \raggedright%
     \usebeamerfont{block body alerted}%
-}%
-\defbeamertemplate{block alerted end}{RPTU}[1][]
-{\end{beamerboxesRPTU}\vskip\smallskipamount}
+    }%
+    \defbeamertemplate{block alerted end}{RPTU}[1][]
+    {\end{beamerboxesRPTU}\vskip\smallskipamount}
 
 \defbeamertemplate{block example begin}{RPTU}[1][shadow=false]
 {%
@@ -282,14 +313,14 @@
     {\raggedright\usebeamerfont*{block title example}\insertblocktitle}%
     \raggedright%
     \usebeamerfont{block body example}%
-}%
-\defbeamertemplate{block example end}{RPTU}[1][]
-{\end{beamerboxesRPTU}\vskip\smallskipamount}
+    }%
+    \defbeamertemplate{block example end}{RPTU}[1][]
+    {\end{beamerboxesRPTU}\vskip\smallskipamount}
 
 % and finally we want to use the RPTU template, for which we just rewrote the rounded corners definition. 
 \setbeamertemplate{blocks}[RPTU]
 %
 % qed symbol colored like text
 \addtobeamertemplate{qed symbol}{%
-    \usebeamercolor*[fg]{box text}%
+  \usebeamercolor*[fg]{box text}%
 }{}%

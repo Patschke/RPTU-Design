@@ -95,9 +95,9 @@
 \end{frame}
 \begin{frame}{Schriftart}{nur XeLaTeX/LuaLaTex}
 	\begin{itemize}
-		\item Wird XeLaTeX oder LuaLaTex verwendet, dann wird automatisch RedHatText als Schriftart ausgewählt. Mit der Option \lstinline!redhat=false! kann dies ausgeschaltet werden. 
+		\item Wird XeLaTeX oder LuaLaTex verwendet, dann wird automatisch RedHatText als Schriftart ausgewählt. Mit der Option \lstinline!redhat=false! kann dies ausgeschaltet werden.
 		\item Bei XeLaTeX wird RedHatText auch für mathematische Formeln verwendet: $E=mc^2$
-		\item Sollte RedHatText nicht installiert sein, führt dies zu Fehlern. Konkret werden die \lstinline!.ttf! Varianten von \lstinline!RedHatText-Regular!, \lstinline!RedHatText-Bold!, \lstinline!RedHatText-Italic!, \lstinline!RedHatText-BoldItalic!, \lstinline!RedHatMono-Regular!, \lstinline!RedHatMono-Bold!, \lstinline!RedHatMono-Italic! und \lstinline!RedHatMono-BoldItalic! benötigt. 
+		\item Sollte RedHatText nicht installiert sein, führt dies zu Fehlern. Konkret werden die \lstinline!.ttf! Varianten von \lstinline!RedHatText-Regular!, \lstinline!RedHatText-Bold!, \lstinline!RedHatText-Italic!, \lstinline!RedHatText-BoldItalic!, \lstinline!RedHatMono-Regular!, \lstinline!RedHatMono-Bold!, \lstinline!RedHatMono-Italic! und \lstinline!RedHatMono-BoldItalic! benötigt.
 		\item Wird \lstinline!pdflatex! verwendet, so kann RedHatText nicht verwendet werden.
 	\end{itemize}
 \end{frame}
@@ -146,11 +146,15 @@
 \section{Befehle}
 \subsection*{}
 \begin{frame}[fragile]{Titelseite}
-	Der Befehl \lstinline|\maketitle| erzeugt eine Titelfolie.
+	\begin{itemize}
+		\item Der Befehl \lstinline|\maketitle| erzeugt eine Titelfolie.
 
-	Er kann in einem \lstinline|frame| aufgerufen werden, dann wird der Stil des Frames verwendet.
+		\item Er kann in einem \lstinline|frame| aufgerufen werden, dann wird der Stil des Frames verwendet.
 
-	Außerhalb eines Frames wird ein Titelframe erzeugt, der den Standardkopf hat, aber keine Fußzeile (siehe Titelfolie dieser Folien).
+		\item Außerhalb eines Frames wird ein Titelframe erzeugt, der den Standardkopf hat, aber keine Fußzeile (siehe Titelfolie dieser Folien).
+
+		\item Es gibt zwei Varianten für die Titelseite: Mit oder ohne Signet U. Per \lstinline|signetontitle=true/false| auswählbar.
+	\end{itemize}
 \end{frame}
 \logo{\color{black}\Large{\parbox{3cm}{\centering Hier wäre\\das Logo}}}
 \begin{frame}{Logo}
