@@ -1,0 +1,81 @@
+\documentclass[
+  a0paper,
+  portrait,
+  fontscale=.35 % scales inversely (larger value=smaller font). Default is 0.292. Also affects Title etc!
+  ]{baposterrptu} 
+
+\usepackage{graphicx}             % Include Graphics
+\usepackage{graphbox}	            % Alignment options for graphics
+\usepackage{rptu-poster}    % some commands and color definitions
+
+%choose your poster colors here:
+\colorlet{color_background}{petrol}
+\colorlet{color_accents}{apfel}
+% all university colors are available:
+% schiefer, ozean ,nacht ,tag, petrol, pflaume, fuchsia, himbeere, mango
+% ToDo: Automize pair color selection. 
+
+\begin{document}
+\begin{poster}{
+    % here you can add baposter arguments to change the layout e.g. columns=3
+  }
+  %
+  % RPTU logo top left
+  {\color{color_accents}\rptuLogo\hspace{1cm}}
+  %
+  % the poster title
+  {\color{white}Poster Title}
+  %
+  % the author(s)
+  {\color{white}Author Names}
+  %
+  % your logo/QR-Code/whatever (placed on the top right)
+  {\includegraphics[width=4cm]{example-image-a}}
+  %
+  % The footer. Place logos of affiliations etc here.
+  \footer
+  {\hfill
+    \includegraphics[align=c,scale=.3]{example-image-b}
+    \hfill
+    \color{white} \huge www.github.com/Patschke/RPTU-Design
+    \hfill
+    \includegraphics[align=c,scale=.3]{example-image-c}
+    \hfill}
+  %
+  % Your content starts from here. 
+  %
+  \begin{posterbox}[name=intro,column=0,row=0]{Introduction}
+
+    This is a poster box
+
+    \begin{itemize}
+      \item Use \LaTeX code as usual
+      \item Write stuff
+      \item Give me feedback if you don't like this.
+      \item You can also let me know if you do like it.
+    \end{itemize}
+
+  \end{posterbox}
+
+  \begin{posterbox}[name=test,column=1,row=0, bottomaligned=intro]{A Box}
+
+    Another poster box. Bottomaligned with the introduction box.
+
+  \end{posterbox}
+
+  \begin{posterbox}[name=test2,column=0,below=intro, span=2]{A wide Box}
+
+    A third posterbox
+
+    Use the column, row, span, above, below and bottomaligned keys to position boxes.
+
+  \end{posterbox}
+
+  \begin{posterbox}[above=foot, below=test2, column=1]{Outlook}
+    And yet anotherone, stretching down to the foot.
+
+    I could add some usefull how-to-use guide here, but than this would be more like an options.tex and less an example. So meh.
+  \end{posterbox}
+
+\end{poster}
+\end{document}
