@@ -1070,13 +1070,13 @@ fill=#1%
       \begin{minipage}{\baposter@titleimage@textwidth}%
         \begin{flushleft}%
           \textbf{\Huge #3}\\%
-          {\vspace*{.7em}\color{white}\hrule height .2em width 3em \relax \vspace*{.7em}}%
+          {\vspace*{.7em}\color{\baposter@box@headerFontColor}\hrule height .2em width 3em \relax \vspace*{.7em}}%
           {\Large #4}%
         \end{flushleft}%
       \end{minipage}
     };%
   \else% Has no eye catcher
-    \draw (image.east) node(title)[anchor=west]  { {\begin{minipage}{\baposter@titleimage@textwidth}{\bfseries\Huge #3}\\{\vspace*{.7em}\color{white}\hrule height .2em width 3em \relax \vspace*{.7em}}{\Large #4}\end{minipage}} };%
+    \draw (image.east) node(title)[anchor=west]  { {\begin{minipage}{\baposter@titleimage@textwidth}{\bfseries\Huge #3}\\{\vspace*{.7em}\color{\baposter@box@headerFontColor}\hrule height .2em width 3em \relax \vspace*{.7em}}{\Large #4}\end{minipage}} };%
   \fi
   }% END poster begin
   % The body
