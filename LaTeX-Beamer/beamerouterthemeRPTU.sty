@@ -56,21 +56,23 @@
 				\fi%
 			\end{flushright}%
 		}%
+		% currently we only have the options "centered" and everything else maps to the default ("left")
+		\ifthenelse{\equal{\rptufootalignment}{centered}}{\def\footspacer{\hfill}}{\def\footspacer{\hspace*{1em}}}%
 		% We want to have equal spacing between date, title, author, etc of all existing stuff. 
 		% Therefore we only insert \hfill for non-empty stuff. 
 		% Datum
 		\setbox0=\hbox{\insertshortdate}\ifdim\wd0>0pt%
-			\hfill%
+			\footspacer%
 			\usebeamerfont{date in head/foot}\insertshortdate{}%
 		\fi%
 		% Autor
 		\setbox0=\hbox{\insertshortauthor}\ifdim\wd0>0pt%
-			\hfill%
+			\footspacer%
 			\usebeamerfont{author in head/foot}\insertshortauthor%
 		\fi%
 		% Titel
 		\setbox0=\hbox{\insertshorttitle}\ifdim\wd0>0pt%
-			\hfill%
+			\footspacer%
 			\usebeamerfont{title in head/foot}\insertshorttitle%
 		\fi%
 		% Logo

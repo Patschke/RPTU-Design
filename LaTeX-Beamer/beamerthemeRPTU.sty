@@ -163,6 +163,13 @@
 }
 \ExecuteOptionsBeamer{maincolor=none}
 %
+%  Option: Choose alilgnment for footer
+%
+\DeclareOptionBeamer{footalignment}[left]{%
+	\def\rptufootalignment{#1}%
+}%
+\ExecuteOptionsBeamer{footalignment=left}%
+%
 %
 %
 % ToDo: No idea why we need this here. Perhaps remove it?
@@ -198,7 +205,7 @@
 %
 \newif\iftukl@displayNavigation%
 %
-\DeclareOptionBeamer{navigation}[true]{\csname tukl@displayNavigation#1\endcsname}
+\DeclareOptionBeamer{navigation}[false]{\csname tukl@displayNavigation#1\endcsname}
 \ExecuteOptionsBeamer{navigation}
 \DeclareOptionBeamer{hidenavigation}{\tukl@displayNavigationfalse}
 \DeclareOptionBeamer{displaynavigation}{\tukl@displayNavigationtrue}

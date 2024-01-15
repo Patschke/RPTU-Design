@@ -21,7 +21,7 @@
 \usepackage{enumerate,graphicx,booktabs}
 \usepackage[TeX]{listings}
 \lstset{basicstyle=\small\ttfamily}% Load Them
-\usetheme[displaynavigation,reducedframetotal,maincolor=rptupink,redhat=true
+\usetheme[displaynavigation,reducedframetotal,maincolor=rptupink,redhat=true,footalignment=left
 ]{RPTU}
 % Meta alternative in XeLaTeX
 \setbeamertemplate{navigation symbols}{}
@@ -112,7 +112,7 @@
 	\begin{itemize}
 		\item \lstinline|navigation=true| bzw. \lstinline|displaynavigation| Zeige in der Kopfzeile eine Navigation an (wie in diesem Foliensatz)
 		\item \lstinline|navigation=false| bzw. \lstinline|hidenavigation| Zeige keine Navigation an
-		\item Standardwert: \lstinline|navigation=true|
+		\item Standardwert: \lstinline|navigation=false|
 	\end{itemize}
 \end{frame}
 \begin{frame}[plain]{Leere Folien}
@@ -143,6 +143,15 @@
 		\item Standardwert von Beamer ist 4:3
 	\end{itemize}
 \end{frame}
+\def\rptufootalignment{centered}%
+\begin{frame}{Fußleiste}
+	\begin{itemize}
+		\item \lstinline|footalignment=left|: Autor, Titel, etc. in der Fußleiste sind linksbündig (Beispiel: Alle Folien außer dieser)
+		\item \lstinline|footalignment=centered|: Die Fußleiste ist gleichmäßig verteilt (Beispiel: Diese Folie)
+		\item Standardwert: \lstinline|footalignment=left|
+	\end{itemize}
+\end{frame}
+\def\rptufootalignment{left}%
 \section{Befehle}
 \subsection*{}
 \begin{frame}[fragile]{Titelseite}
