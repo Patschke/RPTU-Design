@@ -10,8 +10,6 @@
 % <mischke@rptu.de> rewrote it for the RPTU. I don't drink beer or coffee, 
 % but I'm sure you can buy me something nice as well if you feel like it. 
 %
-% This file is just to get started - You need the corresponding Logo
-%
 \documentclass[german,10pt,xcolor=colortbl,compress
 %,draft
 ]{beamer}
@@ -35,10 +33,6 @@
 %\logo{Hier könnte ihr Logo stehen!}
 
 \begin{document}
-\begin{frame}{Versionshinweis}
-	Dieses Design ist noch Work-In-Progress. Es sollte aber schon brauchbar nutzbar sein, einige Nice-To-Have Feature folgen hoffentlich noch. \\
-	Wenn du anregungen und Feedback hast, melde dich gerne. Es lohnt sich womöglich, ab und an die neuste Version herunterzuladen.
-\end{frame}
 \maketitle
 \begin{frame}{Inhaltsverzeichnis}
 	\tableofcontents
@@ -178,12 +172,40 @@
 \logo{}
 \begin{frame}{Links}
 	\begin{itemize}
-		\item Vorlagen und Arbeitshilfen im Design der RPTU\\ \href{https://www.startklar2023.de/brand-portal-rptu/}{https://www.startklar2023.de/brand-portal-rptu/}
+		\item Vorlagen und Arbeitshilfen im Design der RPTU\\ \href{https://rptu.de/ueber-die-rptu/organisation/stabsstellen/universitaetskommunikation/brand-portal}{https://rptu.de/ueber-die-rptu/organisation/stabsstellen/universitaetskommunikation/brand-portal}
 		\item Die Schriftart RedHatText\\
 		      \href{https://github.com/RedHatOfficial/RedHatFont/}{https://github.com/RedHatOfficial/RedHatFont/}
 		\item Userguide zu \LaTeX-Beamer\\ \href{ftp://ftp.dante.de/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf}{dante.de/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf}
 		\item Aktuellste Version dieses Paketes/Themes auf \href{http://github.com}{github.com}:\\
 		      \href{https://github.com/Patschke/RPTU-Design/archive/master.zip}{https://github.com/Patschke/RPTU-Design/archive/master.zip}
 	\end{itemize}
+\end{frame}
+\section{Changelog}
+\begin{frame}{Changelog}
+	Wenn du Anregungen und Feedback hast, melde dich gerne. Es lohnt sich womöglich, ab und an die neuste Version herunterzuladen.
+	\begin{itemize}
+		\item Januar 2023: Inititale Version mit allen wesentlichen Features
+		\item Februar 2023: Option für eigenes Logo ergänzt
+		\item März 2023: Alternative Titelfolie mit Signet-U
+		\item Januar 2024: Überarbeitung nach Feedback der Universitätskommunikation, insbesondere:
+		      \begin{itemize}
+			      \item Obere Navigation per Default deaktiviert
+			      \item Aufzählungen/Listen an CD angepasst
+			      \item Fußzeile an CD angepasst
+			      \item Blöcke per Default wieder eckig gemacht
+		      \end{itemize}
+	\end{itemize}
+	Dieser Changelog ist bestimmt nicht vollständig.
+\end{frame}
+\begin{frame}{Lizenz}
+	\begin{block}{THE BEER-WARE LICENSE (Rev. 42)}
+		Ronny Bergmann <bergmann@mathematik.uni-kl.de> wrote this file. As long as
+		you retain this notice you can do whatever you want with this stuff. If we
+		meet some day, and you think this stuff is worth it, you can buy me a beer
+		or coffee in return.\par\vspace*{1ex}
+		Actually Ronny Bergmann wrote a template file for the TUK. Patrick Mischke
+		<mischke@rptu.de> rewrote it for the RPTU. I don't drink beer or coffee,
+		but I'm sure you can buy me something nice as well if you feel like it.
+	\end{block}
 \end{frame}
 \end{document}
