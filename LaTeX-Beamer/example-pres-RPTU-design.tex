@@ -25,7 +25,8 @@
 \usepackage{enumerate,graphicx}
 % Load Theme
 \usetheme[
-	navigation=true,
+	% The Corporate Design does not use a Navigation bar, but if you like it here you go
+	navigation=false,
 	frametotal=true
     ,maincolor=rptupink
 	%,twoColorBoxes
@@ -33,7 +34,6 @@
 	,signetontitle=true
 ]{RPTU}
 %
-\setbeamertemplate{navigation symbols}{}
 \title{Beispielpräsentation}
 \subtitle{Untertitel}
 \date[]{\today\\[1ex] WorkShop/Conference}
@@ -52,8 +52,11 @@
 	Hier wozu es dieses Template gibt:
 	\begin{itemize}
 		\item Präsentationen bauen
-		\item Ähm... Naja.
-		\item Genau, drei Punkte sind gut.
+		      \begin{itemize}
+			      \item In \LaTeX
+			      \item Und trotzdem im CD
+		      \end{itemize}
+		\item Gut aussehende Vorträge.
 	\end{itemize}
 	So benutzt du es:
 	\begin{enumerate}
@@ -74,7 +77,6 @@
 	Etwas Hervorgehobenes. Die Farben auf den Folien sind ein Farb-Paar aus dem Corporate Design.\\
 
 \end{frame}
-\subsection{B}
 \begin{frame}{Ein Beweis}{Mit Untertitel}
 	\begin{proof}
 		Weil.
