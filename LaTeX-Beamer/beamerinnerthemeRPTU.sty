@@ -328,9 +328,11 @@
 %
 %
 % we have specific ideas on how bullet points should look like
-\setbeamertemplate{itemize item}{>\hskip0.1em}
-\setbeamertemplate{itemize subitem}{>\hskip0.1em}
+\setbeamertemplate{itemize item}{\textgreater\hskip0.1em}
+\setbeamertemplate{itemize subitem}{\textgreater\hskip0.1em}
 \setbeamertemplate{enumerate items}[default]
+\settowidth{\leftmargini}{\usebeamertemplate{itemize item}}
+\addtolength{\leftmargini}{\labelsep}
 % and essentially our table of contents should look the same
 \setbeamertemplate{section in toc}{{\usebeamercolor[fg]{item}\inserttocsectionnumber.}~\inserttocsection}%
 \setbeamertemplate{subsection in toc}{\hspace*{1em}{\usebeamercolor[fg]{item}>}~\inserttocsubsection}%
