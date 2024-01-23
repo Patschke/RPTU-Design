@@ -209,29 +209,38 @@
 	\par
 }%
 %
-\newif\ifrptu@coloredbackground
-\rptu@coloredbackgroundfalse
+\newif\ifrptu@coloredbackground%
+\rptu@coloredbackgroundfalse%
 \define@key{beamerframe}{coloredbackground}[true]{%
 	\rptu@coloredbackgroundtrue%
-	\begingroup
-	\setbeamertemplate{background canvas}[coloredBackground][secondaryrptuthemecolor]
-	\setbeamercolor*{section in head/foot}{use=section in head/foot colored}
-	\usebeamercolor[fg]{normal text colored}
+	\begingroup%
+	\setbeamertemplate{background canvas}[coloredBackground][secondaryrptuthemecolor]%
+	\setbeamercolor*{section in head/foot}{use=section in head/foot colored}%
+	\usebeamercolor[fg]{normal text colored}%
+}% 
+%
+\newif\ifrptu@stackedUbackground%
+\rptu@stackedUbackgroundfalse%
+\define@key{beamerframe}{stackedUbackground}[true]{%
+	\rptu@stackedUbackgroundtrue%
 }% 
 % unset our option, so it does not stick around forever but is limited to 1 frame
 \pretocmd{\beamer@reseteecodes}{%
-	\ifrptu@coloredbackground
-		\endgroup
-		\rptu@coloredbackgroundfalse
-		\setbeamertemplate{background canvas}[default]
-		\setbeamercolor*{section in head/foot}{use=section in head/foot default}
-		\usebeamercolor[fg]{normal text}
-	\fi
-}{}{}
-
-\newlength{\dekolinelengthbelowframetitle}
-\setlength{\dekolinelengthbelowframetitle}{.7cm}
-
+	\ifrptu@coloredbackground%
+		\endgroup%
+		\rptu@coloredbackgroundfalse%
+		\setbeamertemplate{background canvas}[default]%
+		\setbeamercolor*{section in head/foot}{use=section in head/foot default}%
+		\usebeamercolor[fg]{normal text}%
+	\fi%
+	\ifrptu@stackedUbackground%
+		\rptu@stackedUbackgroundfalse%
+	\fi%
+}{}{}%
+%
+\newlength{\dekolinelengthbelowframetitle}%
+\setlength{\dekolinelengthbelowframetitle}{.7cm}%
+%
 \defbeamertemplate*{frametitle}{RPTU}
 {
 	\nointerlineskip%
@@ -297,6 +306,10 @@
 	\begin{tikzpicture}
 		\useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
 		\fill[fill=#1] (0,0) rectangle (\the\paperwidth,\the\paperheight);
+		\ifrptu@stackedUbackground
+			\node at (.6\paperwidth,.6\paperheight)
+			{Uuuuu};
+		\fi
 	\end{tikzpicture}
 }
 %

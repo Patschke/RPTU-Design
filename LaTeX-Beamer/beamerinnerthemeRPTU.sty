@@ -53,7 +53,7 @@
 \defbeamertemplate*{title page}{RPTUsignet}
 {
   {
-      \mbox{}\vfill
+      \mbox{}\vskip 0pt plus 3fill
       \parbox{.4\paperwidth}{
         \raggedright
         \usebeamercolor[fg]{title}\usebeamerfont{title}\inserttitle\par
@@ -319,6 +319,7 @@
 
 % and finally we want to use the RPTU template, for which we just rewrote the rounded corners definition. 
 %\setbeamertemplate{blocks}[RPTU]
+% actually, the design was removed from the CD - PPT useres failed to use it correctly...
 \setbeamertemplate{blocks}[square]
 %
 % qed symbol colored like text
