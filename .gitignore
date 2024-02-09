@@ -10,3 +10,6 @@
 *.vrb
 *.fls
 *.lb
+*.xdv
+*.dvi
+.vscode
