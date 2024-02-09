@@ -41,7 +41,7 @@
 %
 %
 \newcommand{\rptuLogo}{%
-  \begin{tikzpicture}[rotate=180,xscale=-0.6, yscale=0.6]
+  \begin{tikzpicture}[rotate=180, xscale=-0.6, yscale=0.6]%
     %  \draw (191.1,232.8)--(191.1,239.5)--(179.3,239.5)--(179.3,267.4)--(172,267.4)--(172,239.5)--(160.2,239.5)--(160.2,232.8)--cycle;
     \fill svg {%
         M191.1,232.8 L191.1,239.5 L179.3,239.5 L179.3,267.4 L172,267.4 L172,239.5 L160.2,239.5 L160.2,232.8 L191.1,232.8%
@@ -73,47 +73,53 @@
 \newcommand{\footer}[1]
 {
   \headerbox{}%
-  {name=foot, column=0, span=2, above=bottom, textborder=none, headerborder=none, boxheaderheight=0pt, boxshade=none}
-  {#1}
-}
+  {name=foot, column=0, span=2, above=bottom, textborder=none, headerborder=none, boxheaderheight=0pt, boxshade=none}%
+  {#1}%
+}%
 %
-\ifXeTeX
+\ifXeTeX%
   %% works only with XeLaTeX
   %\RequirePackage[T1]{fontenc}
   \RequirePackage[no-math]{fontspec}%
-  \setmainfont{Red Hat Text}
-  \setsansfont{Red Hat Text}
-  \setmonofont{Red Hat Mono}
-  \RequirePackage{mathspec}
+  \setmainfont{Red Hat Text}%
+  \setsansfont{Red Hat Text}%
+  \setmonofont{Red Hat Mono}%
+  \RequirePackage{mathspec}%
   \setmathsfont(Digits){Red Hat Text}        %Red Hat Text im Mathmode
-  \setmathsfont(Latin){Red Hat Text}
-\else
-  \ifLuaTeX
+  \setmathsfont(Latin){Red Hat Text}%
+\else%
+  \ifLuaTeX%
     %% works only with LuaLaTeX (and XeLaTeX)
     \RequirePackage{fontspec}%
     \setmainfont{RedHatText-Regular}[%
-      Extension = .ttf,
-      BoldFont = RedHatText-Bold,
-      ItalicFont = RedHatText-Italic,
+      Extension = .ttf,%
+      BoldFont = RedHatText-Bold,%
+      ItalicFont = RedHatText-Italic,%
       BoldItalicFont = RedHatText-BoldItalic]%
     \setsansfont{RedHatText-Regular}[%
-      Extension = .ttf,
-      BoldFont = RedHatText-Bold,
-      ItalicFont = RedHatText-Italic,
+      Extension = .ttf,%
+      BoldFont = RedHatText-Bold,%
+      ItalicFont = RedHatText-Italic,%
       BoldItalicFont = RedHatText-BoldItalic]%
     \setmonofont{RedHatMono-Regular}[%
-      Extension = .ttf,
-      BoldFont = RedHatMono-Bold,
-      ItalicFont = RedHatMono-Italic,
+      Extension = .ttf,%
+      BoldFont = RedHatMono-Bold,%
+      ItalicFont = RedHatMono-Italic,%
       BoldItalicFont = RedHatMono-BoldItalic]%
-  \else
+  \else%
     % fallback for pdflatex: Don't bother using RedHatText
-    \RequirePackage{PTSansNarrow}
-    \RequirePackage{PTSans}
-    \renewcommand{\familydefault}{\sfdefault}
-  \fi
-\fi
+    \RequirePackage{PTSansNarrow}%
+    \RequirePackage{PTSans}%
+    \renewcommand{\familydefault}{\sfdefault}%
+  \fi%
+\fi%
 %
+\renewcommand\labelitemi{>}%
+\renewcommand\labelitemii{>}%
+\renewcommand\labelitemiii{>}%
+\renewcommand\labelitemiv{>}%
+\settowidth{\leftmargini}{>}%
+\addtolength{\leftmargini}{\labelsep}%
 \endinput%
 %%
 %% End of file `rptu-poster.sty'.
