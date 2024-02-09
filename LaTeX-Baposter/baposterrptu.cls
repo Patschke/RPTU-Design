@@ -977,8 +977,8 @@ fill=#1%
 %% Setting the bg colors of the box header
 \baposterHeaderSetShade{headerColorOne}{headerColorTwo}{borderColor}
 %
-\tikzstyle{rc}=[rounded corners=\baposter@box@@cornerradius];%
-\tikzstyle{src}=[rounded corners=0.5em];%
+\tikzstyle{rc}=[rounded corners=\baposter@box@@cornerradius]%
+\tikzstyle{src}=[rounded corners=0.5em]%
 %
 
 %% Now that everything is set up, draw the actual box, with bg and header
@@ -1014,7 +1014,7 @@ fill=#1%
   \fi
   %
   %% Draw the text inside the box header:
-  \baposterHeaderDrawText{\color{headerFontColor}\baposter@box@headerfont{\baposter@box@title}};%
+  \baposterHeaderDrawText{\color{headerFontColor}\baposter@box@headerfont{\baposter@box@title}}%
   %
   %% Text borders (border around boxes)
   \debug{Poster boxes}%
