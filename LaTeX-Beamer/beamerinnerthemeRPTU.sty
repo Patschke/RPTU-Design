@@ -328,12 +328,20 @@
 }{}%
 %
 %
+\defbeamertemplate{enumerate item}{number-center-aligned}%
+{%
+  \makebox[.7em]{%
+    \usebeamerfont*{item}%
+    \usebeamercolor{item}%
+    \color{fg}\insertenumlabel.%
+  }%
+}%
 % we have specific ideas on how bullet points should look like
 \setbeamertemplate{itemize item}{\textgreater\hskip0.1em}
 \setbeamertemplate{itemize subitem}{\textgreater\hskip0.1em}
-\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{enumerate items}[number-center-aligned]
 \settowidth{\leftmargini}{\usebeamertemplate{itemize item}}
 \addtolength{\leftmargini}{\labelsep}
 % and essentially our table of contents should look the same
-\setbeamertemplate{section in toc}{{\usebeamercolor[fg]{item}\inserttocsectionnumber.}~\inserttocsection}%
-\setbeamertemplate{subsection in toc}{\hspace*{1em}{\usebeamercolor[fg]{item}>}~\inserttocsubsection}%
+\setbeamertemplate{section in toc}{\makebox[2em]{\usebeamercolor[fg]{item}\inserttocsectionnumber.}\inserttocsection}%
+\setbeamertemplate{subsection in toc}{\hspace{2em}{\usebeamercolor[fg]{item}>}~\inserttocsubsection}%
