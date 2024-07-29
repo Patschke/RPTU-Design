@@ -340,8 +340,8 @@
 %% choose-keys typically also assign a function
 \definecolor{baposter@silver}{cmyk}{0,0,0,0.7}
 \define@boolkey[ba]{poster}[baposter@]{grid}                 [false]       {}
-\define@boolkey[ba]{poster}[baposter@]{eyecatcher}           [true]        {}
-\define@cmdkey [ba]{poster}[baposter@]{headerheight}         [0.1\textheight]{}
+\define@boolkey[ba]{poster}[baposter@]{eyecatcher}           [false]        {}
+\define@cmdkey [ba]{poster}[baposter@]{headerheight}         [.173\textheight]{}
 \define@cmdkey [ba]{poster}[baposter@]{columns}              [{}]          {}
 \define@cmdkey [ba]{poster}[baposter@]{colspacing}           [1em]         {}
 \define@cmdkey [ba]{poster}[baposter@]{bgColorOne}           [baposter@silver]{}
@@ -473,17 +473,17 @@
   % Debug grid
   grid=false,
   % Is there an eyecatcher image
-  eyecatcher=true,
+  eyecatcher=false,
   % Colours
   bgColorOne=baposter@silver,
   bgColorTwo=green,
   %
   colspacing=2em,
-  headerheight=0.1\textheight,
+  headerheight=.173\textheight,
   %general options for the poster for rptu
   columns=2,
   background=plain,
-  bgColorOne=color_background,
+  bgColorOne=white,
 }{}
 \setkeys[ba]{posterbox}{
   % Position
@@ -1041,6 +1041,20 @@ fill=#1%
 \hspace{-1.5em}%
 \begin{tikzpicture}[inner sep=0pt,outer sep=0pt,line width=0.05em]%
   \useasboundingbox (0em,0em) rectangle(\textwidth,\textheight);%
+  % Draw that top shape around the title and stuff
+  \draw[draw=color_background,fill=color_background] ($(current page.north west) + (1em, -2em)$) -- ++(0, 5em-\headerheight) arc[start angle=180, end angle=270, radius=5em] -- ++(\textwidth-4em,0) -- ++(0, \headerheight) --cycle;%
+  % Draw the U stack
+  \foreach \s in {-.8,-.6,-.4}{
+      \node at (.6\paperwidth,\paperheight-0.5\headerheight)
+      {\begin{tikzpicture}[rotate=180,xscale=\s,yscale=-\s]%
+        % I just guessed that those U are a 50% opacity, because otherwise they look darker than in the template?
+          \draw[draw=color_accents!50!color_background] svg {%
+              M376.5,276.6v-167h-59.8v167c0,18.8-5.7,34.4-18,47.5c-5.7,5.7-12.3,10.6-18.8,13.9c-1.4,0.7-1.8,0.8-3.3,1.6			c-9,4.9-15.6,13.9-15.6,25.4c0,15.6,12.3,27.8,27.8,27.8c2.5,0,7-0.9,10.6-2.4c15.6-5.7,30.3-14.7,42.6-27			C365,339.6,376.5,310.9,376.5,276.6%
+            };%
+          \draw[draw=color_accents!50!color_background] svg {%
+              M123.4,276.6c0,34.3,11.5,63,34.5,86.8c12.3,12.3,27,21.3,42.6,27c3.6,1.5,8.1,2.4,10.6,2.4c15.5,0,27.8-12.2,27.8-27.8			c0-11.5-6.6-20.5-15.6-25.4c-1.5-0.8-1.9-0.9-3.3-1.6c-6.5-3.3-13.1-8.2-18.8-13.9c-12.3-13.1-18-28.7-18-47.5v-167h-59.8V276.6%
+            };%
+        \end{tikzpicture}};}
   \path[shape=coordinate]%
   (0pt,\colheight) coordinate(north west) (\textwidth,\colheight) coordinate(north east)%
   (0pt,0pt) coordinate(south west)        (\textwidth,0pt) coordinate(south east);%
@@ -1052,31 +1066,35 @@ fill=#1%
     \setbox\baposter@titleimage@left=\hbox{}%
   \fi%
   \setlength{\baposter@titleimage@left@width}{\wd\baposter@titleimage@left}%
-  \setbox\baposter@titleimage@right=\hbox{#5}%
+  % we have no eye-catcher, but want to skip some space on the left for design
+  \addtolength{\baposter@titleimage@left@width}{5em}%
+  \setbox\baposter@titleimage@right=\hbox{\begin{pgfinterruptpicture}\color{black}\fontsize{.6\headerheight}{12}\selectfont\bf#5\end{pgfinterruptpicture}}%
   \setlength{\baposter@titleimage@right@width}{\wd\baposter@titleimage@right}%
   \setlength{\baposter@titleimage@textwidth}{\textwidth}%
   \addtolength{\baposter@titleimage@textwidth}{-\baposter@titleimage@left@width}%
   \addtolength{\baposter@titleimage@textwidth}{-\baposter@titleimage@right@width}%
-
-  \debug{#3}
+  % we want to keep some distance to the RPTU Logo
+  \addtolength{\baposter@titleimage@textwidth}{-2em}%
+  \debug{#3}%
   %
   %
   %      % Draw Header%
   \draw (north west) +(0em,1em+0.5\headerheight) node(image)[anchor=west]   { {\usebox{\baposter@titleimage@left }} };%
-  \draw (north east) +(0em,1em+0.5\headerheight) node(logo) [anchor=east]   { {\usebox{\baposter@titleimage@right}} };%
+  \draw (north east) +(0em,2em+0.5\headerheight) node(logo) [anchor=east]   { {\usebox{\baposter@titleimage@right}} };%
   %
   \ifbaposter@eyecatcher% Has eye catcher%
     \draw (image.east) node(title)[anchor=west,text width=\baposter@titleimage@textwidth]{%
       \begin{minipage}{\baposter@titleimage@textwidth}%
         \begin{flushleft}%
           \textbf{\Huge #3}\\%
-          {\vspace*{.7em}\color{white}\hrule height .2em width 3em \relax \vspace*{.7em}}%
+          {\vspace*{3em}}%
           {\Large #4}%
         \end{flushleft}%
       \end{minipage}
     };%
   \else% Has no eye catcher
-    \draw (image.east) node(title)[anchor=west]  { {\begin{minipage}{\baposter@titleimage@textwidth}{\bfseries\Huge #3}\\{\vspace*{.7em}\color{white}\hrule height .2em width 3em \relax \vspace*{.7em}}{\Large #4}\end{minipage}} };%
+    % shift this to the right, as we have a fixed position (to the right) to start Title etc
+    \draw (image.east) +(5em, 0em) node(title)[anchor=west]  { {\begin{minipage}{\baposter@titleimage@textwidth}{\bfseries\Huge #3}\\{\vspace*{3em}}\\{\Large #4}\end{minipage}} };%
   \fi
   }% END poster begin
   % The body

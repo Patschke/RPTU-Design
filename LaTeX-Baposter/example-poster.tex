@@ -9,8 +9,8 @@
 \usepackage{rptu-poster}    % some commands and color definitions
 
 %choose your poster colors here:
-\colorlet{color_background}{petrol}
-\colorlet{color_accents}{apfel}
+\colorlet{color_background}{apfel}
+\colorlet{color_accents}{petrol}
 % all university colors are available:
 % schiefer, ozean ,nacht ,tag, petrol, pflaume, fuchsia, himbeere, mango
 % ToDo: Automize pair color selection. 
@@ -20,17 +20,17 @@
     % here you can add baposter arguments to change the layout e.g. columns=3
   }
   %
-  % RPTU logo top left
-  {\color{color_accents}\rptuLogo\hspace{1cm}}
+  % the template does not support a logo in the top left (don't try, it's disabled!)
+  {}
   %
   % the poster title
-  {\color{white}Poster Title}
+  {Some Title that is very cool }
   %
   % the author(s)
-  {\color{white}Author Names}
+  {Some Author}
   %
-  % your logo/QR-Code/whatever (placed on the top right)
-  {\includegraphics[width=4cm]{example-image-a}}
+  % RPTU Logo top right. Replace with your own logo if required. Note that only RPTU-like Logos are permitted here.
+  {\rptuLogo}
   %
   % The footer. Place logos of affiliations etc here.
   \footer
@@ -62,7 +62,8 @@
 
   \begin{posterbox}[name=test,column=1,row=0, bottomaligned=intro]{A Box}
 
-    Another poster box. Bottom-aligned with the introduction box.
+    Another poster box. Bottom-aligned with the introduction box. To show how nicely \LaTeX renders math, here is some equation:
+    $$\int_{-\infty}^{\infty}e^{-x^2}\sin{\frac{1}{x}}dx =da \alpha\beta\gamma\Psi\Gamma$$
 
   \end{posterbox}
 
