@@ -79,14 +79,18 @@
 %
 \ifXeTeX%
   %% works only with XeLaTeX
-  %\RequirePackage[T1]{fontenc}
-  \RequirePackage[no-math]{fontspec}%
+  \RequirePackage{fontspec}%
+  \RequirePackage{unicode-math}%
   \setmainfont{Red Hat Text}%
   \setsansfont{Red Hat Text}%
   \setmonofont{Red Hat Mono}%
-  \RequirePackage{mathspec}%
-  \setmathsfont(Digits){Red Hat Text}        %Red Hat Text im Mathmode
-  \setmathsfont(Latin){Red Hat Text}%
+  \setmathfont{latinmodern-math.otf}% Some reasonable fallback
+  \setmathfont{Red Hat Text}[%
+  range={up/{latin,Latin,num}}%
+  ]%
+  \setmathfont{RedHatText-Italic}[%
+  range={it/{latin,Latin}}%
+  ]%
 \else%
   \ifLuaTeX%
     %% works only with LuaLaTeX (and XeLaTeX)
