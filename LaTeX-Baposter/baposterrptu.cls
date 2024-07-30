@@ -109,7 +109,7 @@
 %%
 %%
 %% Licence: GPL
-\ProvidesClass{baposterrptu}[2023/03/15 v1.0 baposterrptu class]
+\ProvidesClass{baposterrptu}[2024/07/30 v2.0 baposterrptu class]
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \LoadClass{article}
 \typeout{baposter: Brian Amberg, 2007, 2008, 2009, 2010, 2011 | http://www.brian-amberg.de/uni/poster/}
@@ -124,6 +124,7 @@
 \newlength{\baposter@finalpaperheight}
 \newlength{\baposter@finalmargin}
 \newlength{\headerheight}%
+\newlength{\footerheight}%
 \newlength{\colwidth}%
 \newlength{\colheight}%
 \newlength{\baposter@@colspacing}%
@@ -137,10 +138,13 @@
 \newlength{\baposter@titleimage@left@width}%
 \newlength{\baposter@titleimage@right@width}%
 \newlength{\baposter@titleimage@textwidth}%
+\newlength{\baposter@footer@left@width}%
 \newbox\baposter@box@content%
 \newbox\baposter@titleimage@left%
 \newbox\baposter@titleimage@title%
 \newbox\baposter@titleimage@right%
+\newbox\baposter@footer@left%
+\newbox\baposter@footer@right%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Packages
@@ -342,6 +346,7 @@
 \define@boolkey[ba]{poster}[baposter@]{grid}                 [false]       {}
 \define@boolkey[ba]{poster}[baposter@]{eyecatcher}           [false]        {}
 \define@cmdkey [ba]{poster}[baposter@]{headerheight}         [.173\textheight]{}
+\define@cmdkey [ba]{poster}[baposter@]{footerheight}        [.086\textheight]{}
 \define@cmdkey [ba]{poster}[baposter@]{columns}              [{}]          {}
 \define@cmdkey [ba]{poster}[baposter@]{colspacing}           [1em]         {}
 \define@cmdkey [ba]{poster}[baposter@]{bgColorOne}           [baposter@silver]{}
@@ -480,6 +485,7 @@
   %
   colspacing=2em,
   headerheight=.173\textheight,
+  footerheight=.086\textheight,
   %general options for the poster for rptu
   columns=2,
   background=plain,
@@ -760,7 +766,7 @@ fill=#1%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% The main poster environment
-%%% \begin{baposter}{settings}{Eye Catcher}{Title}{Author}{University Logo}
+%%% \begin{baposter}{settings}{Eye Catcher}{Title}{Author}{University Logo}{Footer}{Sources}
 %%%-----------------------------------------------------------------------------
 %%% The settings are
 %%%   - grid=true,[false]:Show grid to help with alignment
@@ -775,7 +781,7 @@ fill=#1%
 %%%   - headershape=rectangle,rounded,roundedleft,roundedright
 %%%                       Shape of the box-header region
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newenvironment{poster}[5]{%
+\newenvironment{poster}[7]{%
 \thispagestyle{empty}% Suppress Page Number
 \debug{Poster Starts}%
 % This setkeys call parses all provided options and depending on the option
@@ -795,6 +801,7 @@ fill=#1%
 %
 %% Boxes%
 \setlength{\headerheight}{\baposter@headerheight}%
+\setlength{\footerheight}{\baposter@footerheight}%
 \setlength{\colheight}{\textheight-\baposter@headerheight}%
 \renewcommand{\@@previousbox}{notset}
 
@@ -1040,8 +1047,8 @@ fill=#1%
 %     \xdef\@@previousbox{\baposter@box@name}%
 }% END of posterbox definition
 %
-
-
+%
+%
 %% Poster Background%
 \baposterPosterDrawBackground{bgColorOne}{bgColorTwo}%
 %% Poster header/title
@@ -1081,7 +1088,7 @@ fill=#1%
   \addtolength{\baposter@titleimage@textwidth}{-\baposter@titleimage@left@width}%
   \addtolength{\baposter@titleimage@textwidth}{-\baposter@titleimage@right@width}%
   % we want to keep some distance to the RPTU Logo
-  \addtolength{\baposter@titleimage@textwidth}{-2em}%
+  \addtolength{\baposter@titleimage@textwidth}{-3em}%
   \debug{#3}%
   %
   %
@@ -1102,7 +1109,18 @@ fill=#1%
   \else% Has no eye catcher
     % shift this to the right, as we have a fixed position (to the right) to start Title etc
     \draw (image.east) +(5em, 0em) node(title)[anchor=west]  { {\begin{minipage}{\baposter@titleimage@textwidth}{\bfseries\Huge #3}\\{\vspace*{3em}}\\{\Large #4}\end{minipage}} };%
-  \fi
+  \fi%
+  %
+  %      % Draw Footer  %
+  \setlength{\baposter@footer@left@width}{.6\textwidth}%\begin{pgfinterruptpicture}%
+  \setbox\baposter@footer@left=\hbox{\begin{pgfinterruptpicture}\begin{minipage}[t]{\baposter@footer@left@width-3em}#6\end{minipage}\end{pgfinterruptpicture}}%
+  \setbox\baposter@footer@right=\hbox{\begin{pgfinterruptpicture}\begin{minipage}[t]{\textwidth-\baposter@footer@left@width-4em}#7\end{minipage}\end{pgfinterruptpicture}}%
+  %footer shape as per RPTU design template
+  \draw[draw=color_background,fill=color_background] ($(current page.south west) + (-2em,\footerheight)$) -- ++(\baposter@footer@left@width-1em,0) arc[start angle=90, end angle=0, radius=3em] -- ++(0em,-\footerheight+1em) -- ($(current page.south west) + (-2em,-2em)$) --cycle;%
+  \draw[draw=color_background] ($(current page.south west) + (\baposter@footer@left@width+3em,\footerheight)$) -- ++(\textwidth-\baposter@footer@left@width-3em,0);
+  \draw (south west) +(0.5\baposter@footer@left@width,.5\footerheight-1em) node(image)[anchor=center]   { {\usebox{\baposter@footer@left }} };%
+  \draw (south west) +(4em+\baposter@footer@left@width+\baposter@box@@boxpadding*2,\footerheight-1em) node(image)[anchor=north west]   { {\usebox{\baposter@footer@right }} };%
+  %
   }% END poster begin
   % The body
   {% BEGIN poster end

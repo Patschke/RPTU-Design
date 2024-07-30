@@ -6,7 +6,8 @@
 
 \usepackage{graphicx}             % Include Graphics
 \usepackage{graphbox}	            % Alignment options for graphics
-\usepackage{rptu-poster}    % some commands and color definitions
+\usepackage{rptu-poster}          % some commands and color definitions
+\usepackage{qrcode}               % QR Codes
 
 %choose your poster colors here:
 \colorlet{color_background}{apfel}
@@ -18,29 +19,43 @@
 \begin{document}
 \begin{poster}{
     % here you can add baposter arguments to change the layout e.g. columns=3
+    % this example just uses all the defaults, so no need to specify anything
   }
   %
-  % the template does not support a logo in the top left (don't try, it's disabled!)
-  {}
+  {}% There used to be an top-left logo, but the current corporate design doesn't have that. 
   %
   % the poster title
-  {Some Title that is very cool }
+  {Some Title that is very cool}
   %
   % the author(s)
-  {Some Author}
+  {Patrick Mischke}
   %
   % RPTU Logo top right. Replace with your own logo if required. Note that only RPTU-like Logos are permitted here.
   {\rptuLogo}
   %
-  % The footer. Place logos of affiliations etc here.
-  \footer
-  {\hfill
-    \includegraphics[align=c,scale=.3]{example-image-b}
+  % Footer bottom left. This is supposed to hold contact details, but you can of course put anything here.
+  {
+    \begin{minipage}{.8\footerheight}
+      \qrcode[height=.8\footerheight]{https://github.com/Patschke/RPTU-Design}
+    \end{minipage}
     \hfill
-    \color{white} \huge www.github.com/Patschke/RPTU-Design
-    \hfill
-    \includegraphics[align=c,scale=.3]{example-image-c}
-    \hfill}
+    \begin{minipage}{.4\paperwidth}
+      \textbf{License:}\\
+      Stuff like the logos are probably owned by the RPTU.\\\\
+      \textbf{Contact:}\\
+      Please open an issue at GitHub or email me.
+    \end{minipage}
+  }
+  % Footer bottom right. This is supposed to hold references, but you can of course put anything here.
+  {
+    References:
+    \begin{itemize}
+      \item https://github.com/Patschke/RPTU-Design
+      \item https://rptu.de/intern/brand-portal
+      \item https://github.com/RedHatOfficial/RedHatFont
+      \item Original baposter by Brian Amberg
+    \end{itemize}
+  }
   %
   % Your content starts from here. 
   %
@@ -75,8 +90,8 @@
 
   \end{posterbox}
 
-  \begin{posterbox}[above=foot, below=test2, column=1]{Outlook}
-    And yet another one, stretching down to the foot.
+  \begin{posterbox}[below=test2, column=1]{Outlook}
+    And yet another one. Awesome, right?
 
     I could add some useful how-to-use guide here, but than this would be more like an options.tex and less an example. So meh.
   \end{posterbox}
