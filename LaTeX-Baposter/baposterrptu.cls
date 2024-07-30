@@ -114,7 +114,7 @@
 \LoadClass{article}
 \typeout{baposter: Brian Amberg, 2007, 2008, 2009, 2010, 2011 | http://www.brian-amberg.de/uni/poster/}
 \typeout{baposter: Reinhold Kainhofer, 2011 | http://reinhold.kainhofer.com/}
-\typeout{baposter adaption for RPTU by Patrick Mischke, 2023 | https://github.com/Patschke/RPTU-Design}
+\typeout{baposter adaption for RPTU by Patrick Mischke, 2023, 2024 | https://github.com/Patschke/RPTU-Design}
 
 %% Define lengths only once on inclusion, such that we can make multiple posters
 \newlength{\baposter@basepaperwidth}
