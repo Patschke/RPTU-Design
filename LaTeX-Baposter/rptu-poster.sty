@@ -93,23 +93,19 @@
   ]%
 \else%
   \ifLuaTeX%
-    %% works only with LuaLaTeX (and XeLaTeX)
+    %% I lied. It works also with LuaTex. 
     \RequirePackage{fontspec}%
-    \setmainfont{RedHatText-Regular}[%
-      Extension = .ttf,%
-      BoldFont = RedHatText-Bold,%
-      ItalicFont = RedHatText-Italic,%
-      BoldItalicFont = RedHatText-BoldItalic]%
-    \setsansfont{RedHatText-Regular}[%
-      Extension = .ttf,%
-      BoldFont = RedHatText-Bold,%
-      ItalicFont = RedHatText-Italic,%
-      BoldItalicFont = RedHatText-BoldItalic]%
-    \setmonofont{RedHatMono-Regular}[%
-      Extension = .ttf,%
-      BoldFont = RedHatMono-Bold,%
-      ItalicFont = RedHatMono-Italic,%
-      BoldItalicFont = RedHatMono-BoldItalic]%
+    \RequirePackage{unicode-math}%
+    \setmainfont{Red Hat Text}%
+    \setsansfont{Red Hat Text}%
+    \setmonofont{Red Hat Mono}%
+    \setmathfont{latinmodern-math.otf}% Some reasonable fallback
+    \setmathfont{Red Hat Text}[%
+    range={up/{latin,Latin,num}}%
+    ]%
+    \setmathfont{RedHatText-Italic}[%
+    range={it/{latin,Latin}}%
+    ]%
   \else%
     % fallback for pdflatex: Don't bother using RedHatText
     \RequirePackage{PTSansNarrow}%
