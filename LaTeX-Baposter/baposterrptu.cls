@@ -417,7 +417,7 @@
 % headershape can be one of: rectangle, rounded, smallrounded, roundedleft, roundedright
 \define@choicekey*+[ba]{posterbox}{headershape}%
 [\baposter@box@headershape\baposter@box@headershapenr]%
-{rectangle,rounded,smallrounded,roundedleft,roundedright} [roundedright] {%
+{rectangle,rounded,smallrounded,roundedleft,roundedright,allrounded} [roundedright] {%
   \debug{Header shape: \baposter@box@headershape}
   \renewcommand{\baposterHeaderGetShape}{
     \csname baposter@box@headershape@\baposter@box@headershape\endcsname}
@@ -495,7 +495,7 @@
   % Name
   name=noname,
   % Box design: border:
-  cornerradius=5em,
+  cornerradius=1em,
   % text box:
   textfont={},
   boxshade=plain,
@@ -503,16 +503,16 @@
   boxpadding=2.5em,
   % header
   headerColorTwo=brown,
-  headershape=rectangle,
+  headershape=allrounded,
   boxheaderheight=4em,
   %posterbox options for rptu
   headerborder=closed,
   borderColor=white,
   headershade=plain,
-  headerColorOne=rptuweiss,
-  textborder=roundedright,
+  headerColorOne=color_accents,
+  textborder=none,
   boxColorOne=rptuweiss,
-  headerFontColor=color_accents,
+  headerFontColor=rptuweiss,
   headerfont=\Large\sf\bf,
   linewidth=0pt
 }{}
@@ -673,6 +673,10 @@
   (\baposter@box@name tnw) {[rc]-- (\baposter@box@name nw)} -- %
   (\baposter@box@name ne) -- (\baposter@box@name tne)%
 }
+\newcommand{\baposter@box@headershape@allrounded}{%
+  [rc]{(\baposter@box@name tnw) -- (\baposter@box@name nw) -- %
+      (\baposter@box@name ne)  -- (\baposter@box@name tne)}%
+}
 \newcommand{\baposter@box@headershape@rounded}{%
   (\baposter@box@name tnw) {[rc] -- (\baposter@box@name nw) -- %
       (\baposter@box@name ne) } -- (\baposter@box@name tne)%
@@ -701,6 +705,9 @@
 }
 \newcommand{\baposter@box@headerdrawtext@rounded}[1]{
   \path (\baposter@box@name nw) +(0.5\boxwidth,-0.5\baposter@box@@boxheaderheight) node[anchor=center] {#1};%
+}
+\newcommand{\baposter@box@headerdrawtext@allrounded}[1]{
+  \path (\baposter@box@name nw) +(2em,-0.5\baposter@box@@boxheaderheight) node[anchor=west] {#1};%
 }
 
 
@@ -1044,17 +1051,17 @@ fill=#1%
   % Draw that top shape around the title and stuff
   \draw[draw=color_background,fill=color_background] ($(current page.north west) + (1em, -2em)$) -- ++(0, 5em-\headerheight) arc[start angle=180, end angle=270, radius=5em] -- ++(\textwidth-4em,0) -- ++(0, \headerheight) --cycle;%
   % Draw the U stack
-  \foreach \s in {-.8,-.6,-.4}{
-      \node at (.6\paperwidth,\paperheight-0.5\headerheight)
+  \foreach \s in {-.8,-.6,-.4}{%
+      \node at (.6\paperwidth,\paperheight-0.5\headerheight)%
       {\begin{tikzpicture}[rotate=180,xscale=\s,yscale=-\s]%
-        % I just guessed that those U are a 50% opacity, because otherwise they look darker than in the template?
+          % I just guessed that those U are a 50% opacity, because otherwise they look darker than in the template?
           \draw[draw=color_accents!50!color_background] svg {%
               M376.5,276.6v-167h-59.8v167c0,18.8-5.7,34.4-18,47.5c-5.7,5.7-12.3,10.6-18.8,13.9c-1.4,0.7-1.8,0.8-3.3,1.6			c-9,4.9-15.6,13.9-15.6,25.4c0,15.6,12.3,27.8,27.8,27.8c2.5,0,7-0.9,10.6-2.4c15.6-5.7,30.3-14.7,42.6-27			C365,339.6,376.5,310.9,376.5,276.6%
             };%
           \draw[draw=color_accents!50!color_background] svg {%
               M123.4,276.6c0,34.3,11.5,63,34.5,86.8c12.3,12.3,27,21.3,42.6,27c3.6,1.5,8.1,2.4,10.6,2.4c15.5,0,27.8-12.2,27.8-27.8			c0-11.5-6.6-20.5-15.6-25.4c-1.5-0.8-1.9-0.9-3.3-1.6c-6.5-3.3-13.1-8.2-18.8-13.9c-12.3-13.1-18-28.7-18-47.5v-167h-59.8V276.6%
             };%
-        \end{tikzpicture}};}
+        \end{tikzpicture}};}%
   \path[shape=coordinate]%
   (0pt,\colheight) coordinate(north west) (\textwidth,\colheight) coordinate(north east)%
   (0pt,0pt) coordinate(south west)        (\textwidth,0pt) coordinate(south east);%
