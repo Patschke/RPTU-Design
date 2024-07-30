@@ -10,13 +10,14 @@ Dieses Repository ist auf https://github.com/Patschke/RPTU-Design verfügbar. Di
 Falls du mit LuaLaTeX (oder XeLaTeX) kompilierst, wird die Unischrift RedHatText verwendet - die sollte dann auch installiert sein ;-)
 
 ## LaTeX-Baposter
-Mit Baposter kannst du wissenschaftliche Poster erstellen. Diese Theme versucht sich am Corporate Design der RPTU zu orientieren. Es gibt keine Vorlage für wissenschaftliche Poster, daher interpretiert diese Vorlage das Corporate Design eher frei. 
+Baposter ist ein Poster Template von Brian Amberg. Hier findest du eine Adaption für das Corporate Design der RPTU. Aktuell ist von den fünf Vorlagen
+für wissenschaftliche Poster nur das klassische Design umgesetzt. 
 
 ### Verwendung
-Dieses Repository ist auf https://github.com/Patschke/RPTU-Design verfügbar. Die aktuellste Version erhält man über den Button „Download ZIP“ der sich im Drop-Down Menü „Code“ versteckt. Das `example-poster.tex` gibt eine Idee, wie das ganze genutzt werden soll. Auch hier wird RedHatText verwendet. 
+Dieses Repository ist auf https://github.com/Patschke/RPTU-Design verfügbar. Die aktuellste Version erhält man über den Button „Download ZIP“ der sich im Drop-Down Menü „Code“ versteckt. Das `example-poster.tex` gibt eine Idee, wie das ganze genutzt werden soll. Auch hier wird RedHatText verwendet, diese Schrift sollte also installiert sein. 
 
 ## Briefvorlagen 
-Die Briefvorlagen sind vom offiziellen Brand-Portal der RPTU unter https://www.startklar2023.de/brand-portal-rptu
+Die Briefvorlagen sind vom offiziellen Brand-Portal der RPTU unter https://rptu.de/intern/brand-portal
 
 Fragen hierzu bitte direkt an die zuständigen Stellen. 
 
