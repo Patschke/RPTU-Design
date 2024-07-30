@@ -128,6 +128,7 @@
 \newlength{\colwidth}%
 \newlength{\colheight}%
 \newlength{\baposter@@colspacing}%
+\newlength{\baposter@@outercolspacing}%
 \newlength{\baposter@box@@cornerradius}%
 \newlength{\baposter@box@@boxheaderheight}%
 \newlength{\baposter@box@@boxpadding}%
@@ -346,9 +347,10 @@
 \define@boolkey[ba]{poster}[baposter@]{grid}                 [false]       {}
 \define@boolkey[ba]{poster}[baposter@]{eyecatcher}           [false]        {}
 \define@cmdkey [ba]{poster}[baposter@]{headerheight}         [.173\textheight]{}
-\define@cmdkey [ba]{poster}[baposter@]{footerheight}        [.086\textheight]{}
+\define@cmdkey [ba]{poster}[baposter@]{footerheight}         [.086\textheight]{}
 \define@cmdkey [ba]{poster}[baposter@]{columns}              [{}]          {}
 \define@cmdkey [ba]{poster}[baposter@]{colspacing}           [1em]         {}
+\define@cmdkey [ba]{poster}[baposter@]{outercolspacing}      [3em]         {}
 \define@cmdkey [ba]{poster}[baposter@]{bgColorOne}           [baposter@silver]{}
 \define@cmdkey [ba]{poster}[baposter@]{bgColorTwo}           [green]       {}
 
@@ -484,6 +486,7 @@
   bgColorTwo=green,
   %
   colspacing=2em,
+  outercolspacing=2.5em,
   headerheight=.173\textheight,
   footerheight=.086\textheight,
   %general options for the poster for rptu
@@ -501,16 +504,16 @@
   % Name
   name=noname,
   % Box design: border:
-  cornerradius=1em,
+  cornerradius=1.2em,
   % text box:
   textfont={},
   boxshade=plain,
   boxColorTwo=cyan,
-  boxpadding=2.5em,
+  boxpadding=1.5em,
   % header
   headerColorTwo=brown,
   headershape=allrounded,
-  boxheaderheight=4em,
+  boxheaderheight=3.5em,
   %posterbox options for rptu
   headerborder=closed,
   borderColor=white,
@@ -813,7 +816,9 @@ fill=#1%
 %
 \debug{Columns: \baposter@columns}%
 \setlength{\baposter@@colspacing}{\baposter@colspacing}%
+\setlength{\baposter@@outercolspacing}{\baposter@outercolspacing}%
 \setlength{\colwidth}{\textwidth}%
+\addtolength{\colwidth}{-2\baposter@@outercolspacing}%
 \addtolength{\colwidth}{\baposter@@colspacing*(1-\baposter@columns)}%
 \ifcase\baposter@columns\relax
   \error{You need to have at least one column!}
@@ -884,7 +889,7 @@ fill=#1%
 
 %% The columns is always given absolute
 % boxstartx = column * colwidth + column * colspacing
-\setlength{\boxstartx}{(\colwidth+\baposter@@colspacing)*\baposter@box@column}%
+\setlength{\boxstartx}{\baposter@@outercolspacing+(\colwidth+\baposter@@colspacing)*\baposter@box@column}%
 %
 %% The width is gvien absolute
 % Box Width = span * colwidth + (span-1) * colspacing
@@ -951,9 +956,9 @@ fill=#1%
   %% Above = Bottom%
   \debug{Above bottom}%
   \ifthenelse{\equal{\baposter@box@below}{notset} \and \equal{\baposter@box@aligned}{notset}}{%
-    \path[shape=coordinate] (\boxstartx,\boxheight)                                                              coordinate(\baposter@box@name nw);%
+    \path[shape=coordinate] (\boxstartx,\boxheight+\footerheight+1em)                                                              coordinate(\baposter@box@name nw);%
   }{}%
-  \path[shape=coordinate] (\boxstartx+\boxwidth,0pt)                                                           coordinate(\baposter@box@name se);%
+  \path[shape=coordinate] (\boxstartx+\boxwidth,\footerheight+1em)                                                           coordinate(\baposter@box@name se);%
 }{\ifthenelse{\not \equal{\baposter@box@bottomaligned}{notset}}{%
     \path[shape=coordinate] (\boxstartx+\boxwidth,0pt |- \baposter@box@bottomaligned se)                       coordinate(\baposter@box@name se);%
   }{{\ifthenelse{\not \equal{\baposter@box@above}{notset}}{%
@@ -1102,13 +1107,13 @@ fill=#1%
         \begin{flushleft}%
           \textbf{\Huge #3}\\%
           {\vspace*{3em}}%
-          {\Large #4}%
+          {\Large\bf #4}%
         \end{flushleft}%
       \end{minipage}
     };%
   \else% Has no eye catcher
     % shift this to the right, as we have a fixed position (to the right) to start Title etc
-    \draw (image.east) +(5em, 0em) node(title)[anchor=west]  { {\begin{minipage}{\baposter@titleimage@textwidth}{\bfseries\Huge #3}\\{\vspace*{3em}}\\{\Large #4}\end{minipage}} };%
+    \draw (image.east) +(5em, 0em) node(title)[anchor=west]  { {\begin{minipage}{\baposter@titleimage@textwidth}{\bfseries\Huge #3}\\{\vspace*{3em}}\\{\Large\bf #4}\end{minipage}} };%
   \fi%
   %
   %      % Draw Footer  %
@@ -1117,7 +1122,7 @@ fill=#1%
   \setbox\baposter@footer@right=\hbox{\begin{pgfinterruptpicture}\begin{minipage}[t]{\textwidth-\baposter@footer@left@width-4em}#7\end{minipage}\end{pgfinterruptpicture}}%
   %footer shape as per RPTU design template
   \draw[draw=color_background,fill=color_background] ($(current page.south west) + (-2em,\footerheight)$) -- ++(\baposter@footer@left@width-1em,0) arc[start angle=90, end angle=0, radius=3em] -- ++(0em,-\footerheight+1em) -- ($(current page.south west) + (-2em,-2em)$) --cycle;%
-  \draw[draw=color_background] ($(current page.south west) + (\baposter@footer@left@width+3em,\footerheight)$) -- ++(\textwidth-\baposter@footer@left@width-3em,0);
+  \draw[draw=nacht] ($(current page.south west) + (\baposter@footer@left@width+3em,\footerheight)$) -- ++(\textwidth-\baposter@footer@left@width-3em,0);
   \draw (south west) +(0.5\baposter@footer@left@width,.5\footerheight-1em) node(image)[anchor=center]   { {\usebox{\baposter@footer@left }} };%
   \draw (south west) +(4em+\baposter@footer@left@width+\baposter@box@@boxpadding*2,\footerheight-1em) node(image)[anchor=north west]   { {\usebox{\baposter@footer@right }} };%
   %

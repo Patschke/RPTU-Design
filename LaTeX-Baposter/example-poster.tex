@@ -8,6 +8,7 @@
 \usepackage{graphbox}	            % Alignment options for graphics
 \usepackage{rptu-poster}          % some commands and color definitions
 \usepackage{qrcode}               % QR Codes
+\usepackage{lipsum}                % Dummy text
 
 %choose your poster colors here:
 \colorlet{color_background}{apfel}
@@ -20,12 +21,18 @@
 \begin{poster}{
     % here you can add baposter arguments to change the layout e.g. columns=3
     % this example just uses all the defaults, so no need to specify anything
+    % as I know that people will complain about not enough space and try to
+    % pack stuff clother, here are some example options for that
+    % outercolspacing=2.5em, % adjust the white space on the left/right edges
+    % boxpadding=1.5em,      % adjust the spacing within a box
+    % boxheaderheight=3.5em, % change the header size
   }
   %
   {}% There used to be an top-left logo, but the current corporate design doesn't have that. 
   %
-  % the poster title
-  {Some Title that is very cool}
+  % the poster title/Subtitle. 
+  {Some Title that is very interesting\\
+    \sf Or at least funny?}
   %
   % the author(s)
   {Patrick Mischke}
@@ -61,10 +68,10 @@
   %
   \begin{posterbox}[name=intro,column=0,row=0]{Introduction}
 
-    This is a poster box
+    This is a poster box. Here are some features and examples on how to use this template:
 
     \begin{itemize}
-      \item Use \LaTeX code as usual
+      \item Use \LaTeX-code as usual
       \item Write stuff
       \item Give me feedback if you don't like this.
       \item You can also let me know if you do like it.
@@ -75,25 +82,52 @@
 
   \end{posterbox}
 
-  \begin{posterbox}[name=test,column=1,row=0, bottomaligned=intro]{A Box}
+  \begin{posterbox}[name=box,column=1,row=0, bottomaligned=intro]{A Box}
 
-    Another poster box. Bottom-aligned with the introduction box. To show how nicely \LaTeX renders math, here is some equation:
-    $$\int_{-\infty}^{\infty}e^{-x^2}\sin{\frac{1}{x}}dx =da \alpha\beta\gamma\Psi\Gamma$$
+    Another poster box. Use the column, row, span, above and below keys to position boxes. There are certainly tutorials out there how to use baposter, and I tried not to break the functionality it has.
 
+
+    To show how nicely \LaTeX renders math, here is some equation:
+    $$\int_{-\infty}^{\infty}e^{-x^2}\sin{\frac{\alpha}{x}}dx = \beta$$
+
+    You may have noticed, that not all the above is rendered in RedHatText. This is due to a lack of Greek letters, so RedHat is just used for latin characters and numbers.
   \end{posterbox}
 
-  \begin{posterbox}[name=test2,column=0,below=intro, span=2]{A wide Box}
+  \begin{posterbox}[name=widebox,column=0,below=intro, span=2]{A wide Box}
 
-    A third poster box
+    A third poster box. It's wider than the other ones, as `span=2' is set. This allows you to write even more complicated math!
 
-    Use the column, row, span, above, below and bottomaligned keys to position boxes.
+    \begin{align*}
+      \int_{0}^{1} \left( \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n} x^n \right) dx + \sum_{k=1}^{m} \frac{1}{k^2} \left( \int_{a}^{b} e^{kx} \, dx \right) + \prod_{i=1}^{n} \left( 1 + \frac{1}{i^2} \right)
+      + \lim_{x \to \infty} \left( \frac{\sqrt{x^2 + 1}}{x + 1} \right) \cdot \int_{-\infty}^{\infty} \left( \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(t-\mu)^2}{2\sigma^2}} \right) dt = \sum_{j=1}^{\infty} \left( \frac{(-1)^j}{j^2} \right) \\
+      \quad \stackrel{!}{=} \iint_{R} \left( x^2 + y^2 \right) \, dA - \frac{d}{dx} \left( x^x \right) + \oint_{\gamma} \frac{1}{z} \, dz + \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n+1)!} x^{2n+1} - \int_{-\infty}^{\infty}e^{-x^2}\sin{\frac{\alpha}{x}}dx
+    \end{align*}
 
+    You have to love that, right?
   \end{posterbox}
 
-  \begin{posterbox}[below=test2, column=1]{Outlook}
-    And yet another one. Awesome, right?
+  \begin{posterbox}[below=widebox, column=0]{Images}
+    Of course, common \LaTeX-packages for e.g. images work as usual here. Sou you can just copy and paste the stuff directly from your last paper. Awesome!\vspace{1em}
 
-    I could add some useful how-to-use guide here, but than this would be more like an options.tex and less an example. So meh.
+    \includegraphics[width=\textwidth]{example-image}\vspace{1em}
+
+    I don't know what else to write, so here is some lipsum:
+    \lipsum[1][1-5]
+  \end{posterbox}
+
+  \begin{posterbox}[name=outlook, below=widebox, column=1]{Outlook}
+    Well, I guess we could have... More cool posters with this template? That would be nice.\vspace{1em}
+
+    Again, I don't like white space, so here is some filler:
+    \lipsum[1]
+  \end{posterbox}
+
+  \begin{posterbox}[above=bottom, column=1]{Other Logos}
+    There is no specific location within the poster for these logos elsewhere (e.g. in the footer). So just place them here at the bottom right.\vspace{1em}
+
+    \includegraphics[width=.3\textwidth]{example-image-a}\hfill
+    \includegraphics[width=.3\textwidth]{example-image-b}\hfill
+    \includegraphics[width=.3\textwidth]{example-image-c}
   \end{posterbox}
 
 \end{poster}
