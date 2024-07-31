@@ -488,7 +488,7 @@
   colspacing=2em,
   outercolspacing=2.5em,
   headerheight=.173\textheight,
-  footerheight=.086\textheight,
+  footerheight=.08\textheight,
   %general options for the poster for rptu
   columns=2,
   background=plain,
@@ -1117,14 +1117,14 @@ fill=#1%
   \fi%
   %
   %      % Draw Footer  %
-  \setlength{\baposter@footer@left@width}{.6\textwidth}%\begin{pgfinterruptpicture}%
+  \setlength{\baposter@footer@left@width}{.54\textwidth}%\begin{pgfinterruptpicture}%
   \setbox\baposter@footer@left=\hbox{\begin{pgfinterruptpicture}\begin{minipage}[t]{\baposter@footer@left@width-3em}#6\end{minipage}\end{pgfinterruptpicture}}%
   \setbox\baposter@footer@right=\hbox{\begin{pgfinterruptpicture}\begin{minipage}[t]{\textwidth-\baposter@footer@left@width-4em}#7\end{minipage}\end{pgfinterruptpicture}}%
   %footer shape as per RPTU design template
   \draw[draw=color_background,fill=color_background] ($(current page.south west) + (-2em,\footerheight)$) -- ++(\baposter@footer@left@width-1em,0) arc[start angle=90, end angle=0, radius=3em] -- ++(0em,-\footerheight+1em) -- ($(current page.south west) + (-2em,-2em)$) --cycle;%
-  \draw[draw=nacht] ($(current page.south west) + (\baposter@footer@left@width+3em,\footerheight)$) -- ++(\textwidth-\baposter@footer@left@width-3em,0);
+  \draw[draw=nacht] ($(current page.south west) + (\baposter@footer@left@width+3em,\footerheight)$) -- ++(\textwidth-\baposter@footer@left@width-5.7em,0);
   \draw (south west) +(0.5\baposter@footer@left@width,.5\footerheight-1em) node(image)[anchor=center]   { {\usebox{\baposter@footer@left }} };%
-  \draw (south west) +(4em+\baposter@footer@left@width+\baposter@box@@boxpadding*2,\footerheight-1em) node(image)[anchor=north west]   { {\usebox{\baposter@footer@right }} };%
+  \draw (south west) +(3em+\baposter@footer@left@width+\baposter@box@@boxpadding*2,\footerheight-1em) node(image)[anchor=north west]   { {\usebox{\baposter@footer@right }} };%
   %
   }% END poster begin
   % The body
