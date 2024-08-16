@@ -108,6 +108,14 @@
     ]%
   \else%
     % fallback for pdflatex: Don't bother using RedHatText
+    \typeout{
+
+      Using RedHatText as font requires "XeLaTeX" or "LuaLaTeX"
+
+    }%
+    % To prevent users from loading the wrong math packages, we load amsmath
+    % instead of unicode-math here (as unicode-math is not available with pdflatex)
+    \RequirePackage{amsmath}%
     \RequirePackage{PTSansNarrow}%
     \RequirePackage{PTSans}%
     \renewcommand{\familydefault}{\sfdefault}%
