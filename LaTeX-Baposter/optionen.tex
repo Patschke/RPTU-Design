@@ -1,0 +1,170 @@
+\documentclass[
+  a0paper,
+  portrait,
+  fontscale=.35 % scales inversely (larger value=smaller font). Default is 0.292. Also affects Title etc!
+  ]{baposterrptu} 
+
+\usepackage{graphicx}             % Include Graphics
+\usepackage{graphbox}	            % Alignment options for graphics
+\usepackage{rptu-poster}          % some commands and color definitions
+\usepackage{qrcode}               % QR Codes
+\usepackage{lipsum}                % Dummy text
+\usepackage{url}
+\usepackage[ngerman]{babel}
+\usepackage[TeX]{listings}
+%choose your poster colors here:
+\colorlet{color_background}{apfel}
+\colorlet{color_accents}{petrol}
+% all university colors are available:
+% schiefer, ozean ,nacht ,tag, petrol, pflaume, fuchsia, himbeere, mango
+% ToDo: Automize pair color selection. 
+
+\begin{document}
+\begin{poster}{
+    % here you can add baposter arguments to change the layout e.g. columns=3
+    % this example just uses all the defaults, so no need to specify anything
+    % as I know that people will complain about not enough space and try to
+    % pack stuff clother, here are some example options for that
+    % outercolspacing=2.5em, % adjust the white space on the left/right edges
+    % boxpadding=1.5em,      % adjust the spacing within a box
+    % boxheaderheight=3.5em, % change the header size
+  }
+  %
+  {}% There used to be an top-left logo, but the current corporate design doesn't have that. 
+  %
+  % the poster title/Subtitle. 
+  {Verwendung des \LaTeX-Poster-Templates\\
+    \sf  Eine kurze Übersicht}
+  %
+  % the author(s)
+  {Patrick Mischke}
+  %
+  % RPTU Logo top right. Replace with your own logo if required. Note that only RPTU-like Logos are permitted here.
+  {\rptuLogo}
+  %
+  % Footer bottom left. This is supposed to hold contact details, but you can of course put anything here.
+  {
+    \begin{minipage}{.8\footerheight}
+      \qrcode[height=.8\footerheight]{https://github.com/Patschke/RPTU-Design}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{.35\paperwidth}
+      \textbf{License:}\\
+      Stuff like the logos are probably owned by the RPTU.\\\\
+      \textbf{Contact:}\\
+      Please open an issue at GitHub or email me.
+    \end{minipage}
+  }
+  % Footer bottom right. This is supposed to hold references, but you can of course put anything here.
+  {
+    References:
+    \begin{itemize}
+      \item https://github.com/Patschke/RPTU-Design
+      \item https://rptu.de/intern/brand-portal
+      \item https://github.com/RedHatOfficial/RedHatFont
+      \item Original baposter by Brian Amberg
+    \end{itemize}
+  }
+  %
+  % Your content starts from here. 
+  %
+  \begin{posterbox}[name=intro,column=0,row=0]{Grundlagen}
+
+    Dies ist eine \LaTeX Vorlage für Forschungsposter im "`klassischen"' Design der RPTU. Allgemeine Informationen zum Corporate-Design der RPTU finden sich im Brand-Portal unter \url{https://rptu.de/intern/brand-portal}.\\
+
+    In diesem Poster werden die verschiedenen Optionen dieses Templates erklärt. Für den Anfang (oder eiligen Leser) läuft es hinaus auf:
+
+    \begin{itemize}
+      \item Lade dieses Template herunter und schau ab und an nach Aktualisierungen: \url{https://github.com/Patschke/RPTU-Design}
+      \item Installiere die Hausschrift RedHatText, falls noch nicht geschehen: \url{https://github.com/RedHatOfficial/RedHatFont}
+      \item Kopiere und bearbeite die \lstinline!example-poster.tex!
+      \item Kompliere mit \lstinline!xelatex! oder \lstinline!lualatex! (mit \lstinline!pdflatex! wird die Schriftart Red Hat Text nicht verwendet)
+    \end{itemize}
+  \end{posterbox}
+
+  \begin{posterbox}[name=farben,column=1,row=0]{Farben}
+    Das Corporate Design der RPTU definiert fünf Farbpaare. Für das Postertemplate wird eines dieser Farbpaare verwendet.
+
+    \begin{center}
+      \begin{tikzpicture}
+        \draw[white, fill=schiefer] (0.0,0) rectangle ++(2,2) node[midway, align=center] {schiefer\\blaugrau};
+        \draw[white, fill=nacht]    (2.2,0) rectangle ++(2,2) node[midway, align=center] {nacht\\dunkelblau};
+        \draw[white, fill=petrol]   (4.4,0) rectangle ++(2,2) node[midway, align=center] {petrol\\dunkelgruen};
+        \draw[white, fill=pflaume]  (6.6,0) rectangle ++(2,2) node[midway, align=center] {pflaume\\violett};
+        \draw[white, fill=himbeere] (8.8,0) rectangle ++(2,2) node[midway, align=center] {himbeere\\rot};
+        %
+        \draw[white, fill=ozean]    (0.0,0) rectangle ++(2,-2) node[midway, align=center] {ozean\\gruengrau};
+        \draw[white, fill=tag]      (2.2,0) rectangle ++(2,-2) node[midway, align=center] {tag\\hellblau};
+        \draw[white, fill=apfel]    (4.4,0) rectangle ++(2,-2) node[midway, align=center] {apfel\\hellgruen};
+        \draw[white, fill=fuchsia]  (6.6,0) rectangle ++(2,-2) node[midway, align=center] {fuchsia\\pink};
+        \draw[white, fill=mango]    (8.8,0) rectangle ++(2,-2) node[midway, align=center] {mango\\orange};
+        % schiefer, ozean ,nacht ,tag, petrol, pflaume, fuchsia, himbeere, mango
+      \end{tikzpicture}
+    \end{center}
+
+    Ein Farb-Paar fürs Poster wird mit \lstinline!\colorlet{color_background}{<farbe1>}! und \lstinline!\colorlet{color_accent}{<farbe2>}! ausgewählt, wobei \lstinline!<farbe>! entweder \lstinline!rptublaugrau!, \lstinline!rptudunkelblau!, \dots, \lstinline!rptuorange! oder \lstinline!schiefer!, \lstinline!nacht!, \dots \lstinline!mango! ist.\\
+
+    In diesem Template werden die CMYK Farben aus dem Brand-Manual verwendet. Diese sehen teilweise deutlich anders aus, als die dort genannten RGB Farben, sind aber die korrekte Wahl für Drucksachen (und ich gehe davon aus, dass du dein Poster drucken möchtest).
+
+  \end{posterbox}
+
+  \begin{posterbox}[name=poster-optionen,column=0,below=intro, span=1]{Poster-Argumente}
+    Dein Poster beginnt mit einem \lstinline!\begin{poster}! Befehl. Anschließend werden sieben Argumente übergeben. Diese sind:
+    \begin{enumerate}
+      \item Layout-Optionen
+      \item {[entfallen, einfach leer lassen]}
+      \item Der Titel deines Posters
+      \item Die Autoren
+      \item Das Logo oben Rechts: Entweder das Unilogo (\lstinline!\rptuLogo!), oder ein anderes Logo mit RPTU-Branding.
+      \item Die Kontaktbox unten links: Wer du bist und wie man dich erreicht.
+      \item Die Liste unten rechts: Laut Design gehören hier Quellen hin, ich finde aber Logos von Kooperationspartnern machen sich da auch super.
+    \end{enumerate}
+    Dein Poster endet mit einem \lstinline!\end{poster}! Befehl. Zwischendurch baust du dein Poster aus Posterboxen.
+  \end{posterbox}
+
+  \begin{posterbox}[below=poster-optionen, column=0]{Posterbox-Optionen}
+    Dein Poste besteht aus unterschiedlichen Boxen. Diese sind nach dem Prinzip \lstinline!\begin{posterbox}[<Optionen>]{Titel}Inhalt\end{posterbox}! aufgebaut. Mit den Optionen legst du insbesondere die Platzierung der Posterbox fest:\\
+
+    \begin{center}
+      \begin{tabular}{lp{0.7\textwidth}}
+        \lstinline!name!        & Box-Name, mit der die Box referenziert werden kann                                                                                 \\
+        \lstinline!row, column! & Absolute Position der Box. Für Boxen in der obersten Zeile ist (\lstinline!row=0!), sonst wird fast nur \lstinline!column! genutzt \\
+        \lstinline!span!        & Breite der Box, falls eine Box über mehrere Spalten hinweg gehen soll                                                              \\
+        \lstinline!below!       & Positionierung der Box unterhalb einer anderen Box (Angabe des Box-Namens)                                                         \\
+        \lstinline!above!       & Positionierung der Box oberhalb einer anderen Box. \lstinline!above=bottom! Platziert die Box ganz unten.                          \\
+        \lstinline!aligned!     & Positionierung der Box auf gleicher Höhe mit einer anderen Box
+      \end{tabular}
+    \end{center}
+
+  \end{posterbox}
+
+  \begin{posterbox}[name=layout, below=farben, column=1]{Layout-Optionen}
+    Hier sind die wichtigsten Layout-Optionen aufgeführt. Diese übergibst du als erstes Argument der \lstinline!poster!-Umgebung.
+
+    \begin{center}
+      \begin{tabular}{lp{0.7\textwidth}}
+        \lstinline!columns!         & Die Anzahl der Spalten (default: 2)                                                        \\
+        \lstinline!colspacing!      & Der Abstand zwischen den Boxen (default: 2em)                                              \\
+        \lstinline!outercolspacing! & Der Abstand zu den Rändern (default: 2.5em)                                                \\
+        \lstinline!boxpadding!      & Der Abstand des Texts rundum "`innerhalb"' seiner Box und zur Überschrift (default: 1.5em) \\
+        \lstinline!cornerradius!    & Der Radius der Ecken der Box (default: 1.2em)                                              \\
+        \lstinline!boxheaderheight! & Die Hohe der Überschriften (default: 3.5em)                                                \\
+        \lstinline!headerFontColor! & Die Farbe der Überschriften (default: rptuweiss)                                           \\
+        \lstinline!headerfont!      & Das Format der Überschriften (default: \lstinline!\Large\sf\bf!)
+      \end{tabular}
+    \end{center}
+    Die Optionen, die sich auf eine Box beziehen, können auch pro Box angepasst werden. Es gibt noch etliche weitere Optionen, die aber das Layout über das Maß dessen hinaus verändern, was das RPTU-Design erlaubt. Fast alle Optionen, die baposter bietet sind hier weiterhin verfügbar. Falls du dich austoben willst, google nach baposter oder lies den Quellcode.
+  \end{posterbox}
+
+  \begin{posterbox}[above=bottom, below=layout, column=1]{Feedback \& FAQ}
+    Hier ein paar Fragen, die mir schonmal gestellt wurden:
+    \begin{itemize}
+      \item Irgendeine Fehlermeldung zum Thema Fonts taucht auf: Vermutlich ist Red Hat Text nicht installiert oder \LaTeX kann es nicht finden.
+      \item Es wird Red Hat Text nicht verwendet, aber keine Fehler geworfen: Vermutlich nutzt du pdflatex. Nutze stattdessen lualatex oder xelatex.
+      \item Die Farben sehen falsch aus: Siehe Farben
+    \end{itemize}
+    Ich freue mich über dein Feedback und Verbesserungsideen.
+  \end{posterbox}
+
+\end{poster}
+\end{document}
