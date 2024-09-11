@@ -21,6 +21,12 @@ Die Briefvorlagen sind vom offiziellen Brand-Portal der RPTU unter https://rptu.
 
 Fragen hierzu bitte direkt an die zuständigen Stellen. 
 
+## Troubleshooting
+
+### Schriftart nicht gefunden, obwohl installiert (Ubuntu)
+Ubuntu neigt dazu, Schriftarten nur für einzelne Nutzer zu installieren. Je nach LaTeX Installation findet dieses die Schriften dann allerdings nicht. Mit `fc-list | grep RedHat` lässt sich prüfen, ob dieses in `/usr/share/fonts` (dort sucht LaTeX meistens) oder `~/.local/share/fonts` bzw. `~/.fonts` liegen (dort sucht LaTeX meistens nicht). Ubuntu bietet sicher irgendwo auch die Option einer Systemweiten Installation, hat die aber erfolgreich vor mir versteckt. Im Zweifel funktioniert es, einfach die font-files manuell nach `/usr/share/fonts` zu legen (https://github.com/RedHatOfficial/RedHatFont/releases,  die `ttf` Unterordner von `fonts/mono/static` und `fonts/proportional/static` kopieren) sowie danach per `fc-cache` den Font-Cache neu zu bauen. 
+
+
 ## Lizenz
 
 Die Quelltext-Dateien liegen unter folgender Lizenz
