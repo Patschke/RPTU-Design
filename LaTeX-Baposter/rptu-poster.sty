@@ -77,15 +77,39 @@
   {#1}%
 }%
 %
+\def\redhattext{Red Hat Text}%
+\def\redhattextalt{RedHatText}%
+\def\redhatmono{Red Hat Mono}%
+\def\redhatmonoalt{RedHatMono}%
+\def\fontfallback{PT Sans}%
+\def\monofallback{PT Mono}%
 \ifXeTeX%
   %% works only with XeLaTeX
   \RequirePackage{fontspec}%
   \RequirePackage{unicode-math}%
-  \setmainfont{Red Hat Text}%
-  \setsansfont{Red Hat Text}%
-  \setmonofont{Red Hat Mono}%
+  % sometimes Red Hat Text is installed using the name "RedHatText", sometimes "Red Hat Text". 
+  % We check which one we can find. We treat PTsans as fallback
+  \IfFontExistsTF{\redhattext}{}%
+  {\IfFontExistsTF{\redhattextalt}{\let\redhattext=\redhattextalt}%
+    {\let\redhattext=\fontfallback%
+      \typeout{
+
+        Red Hat Text not found!
+
+      }}}%
+  \IfFontExistsTF{\redhatmono}{}%
+  {\IfFontExistsTF{\redhatmonoalt}{\let\redhatmono=\redhatmonoalt}%
+    {\let\redhatmono=\monofallback%
+      \typeout{
+
+        Red Hat Mono not found!
+
+      }}}%
+  \setmainfont{\redhattext}%
+  \setsansfont{\redhattext}%
+  \setmonofont{\redhatmono}%
   \setmathfont{latinmodern-math.otf}% Some reasonable fallback
-  \setmathfont{Red Hat Text}[%
+  \setmathfont{\redhattext}[%
   range={up/{latin,Latin,num}}%
   ]%
   \setmathfont{RedHatText-Italic}[%
@@ -96,11 +120,29 @@
     %% I lied. It works also with LuaTex. 
     \RequirePackage{fontspec}%
     \RequirePackage{unicode-math}%
-    \setmainfont{Red Hat Text}%
-    \setsansfont{Red Hat Text}%
-    \setmonofont{Red Hat Mono}%
+    % sometimes Red Hat Text is installed using the name "RedHatText", sometimes "Red Hat Text". 
+    % We check which one we can find. We treat PTsans as fallback
+    \IfFontExistsTF{\redhattext}{}%
+    {\IfFontExistsTF{\redhattextalt}{\let\redhattext=\redhattextalt}%
+      {\let\redhattext=\fontfallback%
+        \typeout{
+
+          Red Hat Text not found!
+
+        }}}%
+    \IfFontExistsTF{\redhatmono}{}%
+    {\IfFontExistsTF{\redhatmonoalt}{\let\redhatmono=\redhatmonoalt}%
+      {\let\redhatmono=\monofallback%
+        \typeout{
+
+          Red Hat Mono not found!
+
+        }}}%
+    \setmainfont{\redhattext}%
+    \setsansfont{\redhattext}%
+    \setmonofont{\redhatmono}%
     \setmathfont{latinmodern-math.otf}% Some reasonable fallback
-    \setmathfont{Red Hat Text}[%
+    \setmathfont{\redhattext}[%
     range={up/{latin,Latin,num}}%
     ]%
     \setmathfont{RedHatText-Italic}[%
@@ -110,9 +152,11 @@
     % fallback for pdflatex: Don't bother using RedHatText
     \typeout{
 
-      Using RedHatText as font requires "XeLaTeX" or "LuaLaTeX"
+      Using RedHatText as font requires "XeLaTeX" or "LuaLaTeX". Using PT Sans instead.
 
     }%
+    \let\redhatmono=\monofallback%
+    \let\redhattext=\fontfallback%
     % To prevent users from loading the wrong math packages, we load amsmath
     % instead of unicode-math here (as unicode-math is not available with pdflatex)
     \RequirePackage{amsmath}%
