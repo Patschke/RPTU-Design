@@ -1,4 +1,3 @@
-% !TeX program = LuaLaTeX
 %
 % THE BEER-WARE LICENSE (Rev. 42):
 % Ronny Bergmann <bergmann@mathematik.uni-kl.de> wrote this file. As long as you
@@ -6,32 +5,25 @@
 % some day, and you think this stuff is worth it, you can buy me a beer or
 % coffee in return.
 %
-% 
 %
 % Actually Ronny Bergmann wrote a template file for the TUK. Patrick Mischke 
 % <mischke@rptu.de> rewrote it for the RPTU. I don't drink beer or coffee, 
 % but I'm sure you can buy me something nice as well if you feel like it. 
 %
-% This file is just to get started - You need the corresponding Logo
-%
-\documentclass[german,10pt,compress,aspectratio=169
-%,draft
-]{beamer}
+\documentclass[german,10pt,compress,aspectratio=169]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[OT1]{fontenc}
-\usepackage{calc}
 \usepackage[ngerman]{babel} % Neue Rechtschreibung
 \usepackage{amsmath,amsthm,amssymb,euscript} % AMS-LaTeX  
-\usepackage{enumerate,graphicx}
 % Load Theme
 \usetheme[
 	% The Corporate Design does not use a Navigation bar, but if you like it here you go
 	navigation=false,
-	frametotal=false
-    ,maincolor=rptupink
-	%,twoColorBoxes
-	,oneColorBoxes
-	,signetontitle=true
+	frametotal=false,
+	maincolor=rptupink,
+	%twoColorBoxes,
+	oneColorBoxes,
+	signetontitle=true
 ]{RPTU}
 %
 \title{Beispielpräsentation}
@@ -52,10 +44,10 @@
 	Hier wozu es dieses Template gibt:
 	\begin{itemize}
 		\item Präsentationen bauen
-		      \begin{itemize}
-			      \item In \LaTeX
-			      \item Und trotzdem im CD
-		      \end{itemize}
+			\begin{itemize}
+				\item In \LaTeX
+				\item Und trotzdem im CD
+			\end{itemize}
 		\item Gut aussehende Vorträge.
 	\end{itemize}
 	So benutzt du es:

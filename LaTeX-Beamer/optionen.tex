@@ -10,15 +10,12 @@
 % <mischke@rptu.de> rewrote it for the RPTU. I don't drink beer or coffee, 
 % but I'm sure you can buy me something nice as well if you feel like it. 
 %
-\documentclass[german,10pt,compress
-%,draft
-]{beamer}
-\usepackage{calc}
+\documentclass[german,10pt,compress]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[OT1]{fontenc}
 \usepackage[ngerman]{babel} % Neue Rechtschreibung
 \usepackage{amsmath,amsthm,amssymb,euscript} % AMS-LaTeX  
-\usepackage{enumerate,graphicx,booktabs}
 \usepackage[TeX]{listings}
-\lstset{basicstyle=\small\ttfamily}% Load Them
 \usetheme[displaynavigation,reducedframetotal,maincolor=rptupink,redhat=true,footalignment=left
 ]{RPTU}
 % Meta alternative in XeLaTeX
@@ -28,9 +25,6 @@
 \date[]{\today}
 \author[P. Mischke]{Patrick Mischke\\Original für die TUK von Ronny Bergmann}
 \institute[]{AG Ott\\FB Physik\\RPTU Kaiserslautern}
-%\hypersetup{colorlinks=true, linkcolor=tuklblue, urlcolor=blue!50!black}
-
-%\logo{Hier könnte ihr Logo stehen!}
 
 \begin{document}
 \maketitle
@@ -56,12 +50,12 @@
 \begin{frame}{Einbinden des Themes}
 	\begin{itemize}
 		\item Benötigt: 4 Dateien
-		      \begin{itemize}
-			      \item \lstinline|beamercolorthemeRPTU.sty|
-			      \item \lstinline|beamerinnerthemeRPTU.sty|
-			      \item \lstinline!beamerouterthemeRPTU.sty!
-			      \item \lstinline|beamerthemeRPTU.sty|
-		      \end{itemize}
+			\begin{itemize}
+				\item \lstinline|beamercolorthemeRPTU.sty|
+				\item \lstinline|beamerinnerthemeRPTU.sty|
+				\item \lstinline!beamerouterthemeRPTU.sty!
+				\item \lstinline|beamerthemeRPTU.sty|
+			\end{itemize}
 
 		\item nach den Paketen mit \textbackslash\lstinline|usetheme[<Optionen>]\{RPTU\}| das Paket laden
 		\item Am einfachsten: Mit dem Beispiel \lstinline!example-pres-RPTU-design.tex! loslegen
@@ -120,17 +114,17 @@
 \begin{frame}{Darstellung von Blöcken}
 	\begin{itemize}
 		\item \lstinline!twoColorBoxes=true! (default): Boxen werden zweigeteilt dargestellt.
-		      \begin{block}{Beispiel}
-			      Dies ist eine zweifarbige Box.
-		      \end{block}
+			\begin{block}{Beispiel}
+				Dies ist eine zweifarbige Box.
+			\end{block}
 		\item \lstinline!twoColorBoxes=false! oder \lstinline!oneColorBoxes!: Boxen werden einfarbig dargestellt.
-		      \setbeamercolor*{box text}{fg=white}
-		      \setbeamercolor*{block body}{parent=box text, use=block title,bg=block title.bg}
-		      \setbeamercolor*{block body alerted}{parent=box text,use=block title alerted,bg=block title alerted.bg}
-		      \setbeamercolor*{block body example}{parent=box text,use=block title example,bg=block title example.bg}
-		      \begin{block}{Beispiel}
-			      Dies ist eine einfarbige Box.
-		      \end{block}
+			\setbeamercolor*{box text}{fg=white}
+			\setbeamercolor*{block body}{parent=box text, use=block title,bg=block title.bg}
+			\setbeamercolor*{block body alerted}{parent=box text,use=block title alerted,bg=block title alerted.bg}
+			\setbeamercolor*{block body example}{parent=box text,use=block title example,bg=block title example.bg}
+			\begin{block}{Beispiel}
+				Dies ist eine einfarbige Box.
+			\end{block}
 	\end{itemize}\end{frame}
 \begin{frame}{Darstellung von Blöcken}{Ursprüngliches CD}
 	Im ursprünglichen CD der RPTU gab es eine Blockform mit einer runden Ecke. Da dies für den durchschnittlichen Powerpoint Nutzer wohl zu kompliziert war, wurde es nachträglich entfernt. Schade eigentlich, da dies ganz hübsch war. Falls du diese Blöcke haben möchtest, kannst du sie per \lstinline!\\setbeamertemplate\{blocks\}\[RPTU\]! aktivieren.
@@ -179,10 +173,10 @@
 	\begin{itemize}
 		\item Vorlagen und Arbeitshilfen im Design der RPTU\\ \href{https://rptu.de/ueber-die-rptu/organisation/stabsstellen/universitaetskommunikation/brand-portal}{https://rptu.de/ueber-die-rptu/organisation/stabsstellen/universitaetskommunikation/brand-portal}
 		\item Die Schriftart RedHatText\\
-		      \href{https://github.com/RedHatOfficial/RedHatFont/}{https://github.com/RedHatOfficial/RedHatFont/}
+			\href{https://github.com/RedHatOfficial/RedHatFont/}{https://github.com/RedHatOfficial/RedHatFont/}
 		\item Userguide zu \LaTeX-Beamer\\ \href{ftp://ftp.dante.de/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf}{dante.de/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf}
 		\item Aktuellste Version dieses Paketes/Themes auf \href{http://github.com}{github.com}:\\
-		      \href{https://github.com/Patschke/RPTU-Design/archive/master.zip}{https://github.com/Patschke/RPTU-Design/archive/master.zip}
+			\href{https://github.com/Patschke/RPTU-Design/archive/master.zip}{https://github.com/Patschke/RPTU-Design/archive/master.zip}
 	\end{itemize}
 \end{frame}
 \section{Changelog}
@@ -193,12 +187,12 @@
 		\item Februar 2023: Option für eigenes Logo ergänzt
 		\item März 2023: Alternative Titelfolie mit Signet-U
 		\item Januar 2024: Überarbeitung nach Feedback der Universitätskommunikation, insbesondere:
-		      \begin{itemize}
-			      \item Obere Navigation per Default deaktiviert
-			      \item Aufzählungen/Listen an CD angepasst
-			      \item Fußzeile an CD angepasst
-			      \item Blöcke per Default wieder eckig gemacht
-		      \end{itemize}
+			\begin{itemize}
+				\item Obere Navigation per Default deaktiviert
+				\item Aufzählungen/Listen an CD angepasst
+				\item Fußzeile an CD angepasst
+				\item Blöcke per Default wieder eckig gemacht
+			\end{itemize}
 	\end{itemize}
 	Dieser Changelog ist bestimmt nicht vollständig.
 \end{frame}
