@@ -10,15 +10,12 @@
 % <mischke@rptu.de> rewrote it for the RPTU. I don't drink beer or coffee, 
 % but I'm sure you can buy me something nice as well if you feel like it. 
 %
-\documentclass[german,10pt,compress
-%,draft
-]{beamer}
-\usepackage{calc}
+\documentclass[german,10pt,compress]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[OT1]{fontenc}
 \usepackage[ngerman]{babel} % Neue Rechtschreibung
 \usepackage{amsmath,amsthm,amssymb,euscript} % AMS-LaTeX  
-\usepackage{enumerate,graphicx,booktabs}
 \usepackage[TeX]{listings}
-\lstset{basicstyle=\small\ttfamily}% Load Them
 \usetheme[displaynavigation,reducedframetotal,maincolor=rptupink,redhat=true,footalignment=left
 ]{RPTU}
 % Meta alternative in XeLaTeX
@@ -28,9 +25,6 @@
 \date[]{\today}
 \author[P. Mischke]{Patrick Mischke\\Original für die TUK von Ronny Bergmann}
 \institute[]{AG Ott\\FB Physik\\RPTU Kaiserslautern}
-%\hypersetup{colorlinks=true, linkcolor=tuklblue, urlcolor=blue!50!black}
-
-%\logo{Hier könnte ihr Logo stehen!}
 
 \begin{document}
 \maketitle
@@ -199,6 +193,7 @@
 			      \item Fußzeile an CD angepasst
 			      \item Blöcke per Default wieder eckig gemacht
 		      \end{itemize}
+		\item November 2025: Schriftimport via ttf oder otf (beigetragen von Martin Wagner)
 	\end{itemize}
 	Dieser Changelog ist bestimmt nicht vollständig.
 \end{frame}
